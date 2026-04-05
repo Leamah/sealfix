@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(rm -rf temp_extract)",
+      "Bash(gh --version)",
+      "Bash(git --version)",
+      "Bash(npm --version)",
+      "Bash(gh auth:*)",
+      "Read(//c/Users/mahlo/OneDrive/Desktop/**)",
+      "Bash(npx create-next-app@latest sealfix-tmp --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(cp -r sealfix-tmp/. sealfix/)",
+      "Bash(rm -rf sealfix-tmp)"
+    ]
+  }
+}
