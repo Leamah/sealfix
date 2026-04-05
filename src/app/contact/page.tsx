@@ -27,14 +27,26 @@ export default function ContactPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <div className="rounded border border-charcoal-700 bg-charcoal-800 p-6">
-              <h2 className="font-display text-lg font-bold uppercase text-sand-100">Phone</h2>
+              <h2 className="font-display text-lg font-bold uppercase text-sand-100">Office Phone</h2>
               <a
                 href={`tel:${COMPANY.phone}`}
                 className="mt-2 block text-xl font-semibold text-ember-400 hover:text-ember-300 transition-colors"
               >
                 {COMPANY.phone}
               </a>
-              <p className="mt-1 text-xs text-sand-400">Monday – Friday, 07:00 – 17:00</p>
+              <p className="mt-1 text-xs text-sand-400">{COMPANY.hours.office}</p>
+            </div>
+
+            <div className="rounded border border-charcoal-700 bg-charcoal-800 p-6">
+              <h2 className="font-display text-lg font-bold uppercase text-sand-100">24-Hour Support Line</h2>
+              <a
+                href={`tel:${COMPANY.supportPhone}`}
+                className="mt-2 block text-xl font-semibold text-ember-400 hover:text-ember-300 transition-colors"
+              >
+                {COMPANY.supportPhone}
+              </a>
+              <p className="mt-1 text-xs text-sand-400">{COMPANY.hours.support}</p>
+              <p className="mt-0.5 text-xs text-sand-400">{COMPANY.hours.emergency}</p>
             </div>
 
             <div className="rounded border border-charcoal-700 bg-charcoal-800 p-6">
@@ -48,7 +60,7 @@ export default function ContactPage() {
               <p className="mt-1 text-xs text-sand-400">We aim to respond within one business day</p>
             </div>
 
-            <div className="rounded border border-charcoal-700 bg-charcoal-800 p-6 sm:col-span-2">
+            <div className="rounded border border-charcoal-700 bg-charcoal-800 p-6">
               <h2 className="font-display text-lg font-bold uppercase text-sand-100">Head Office</h2>
               <address className="mt-2 not-italic text-sm text-sand-300 leading-relaxed">
                 {COMPANY.address.streetAddress}<br />

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface HeroSectionProps {
   title: string;
@@ -7,6 +8,8 @@ interface HeroSectionProps {
   ctaHref?: string;
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export function HeroSection({
@@ -16,6 +19,8 @@ export function HeroSection({
   ctaHref = '/pricing',
   secondaryCtaLabel = 'Call Us Now',
   secondaryCtaHref = 'tel:+27110000000',
+  imageSrc,
+  imageAlt = 'SealFix team on site',
 }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden bg-charcoal-900 py-20 sm:py-28 lg:py-36">
@@ -29,6 +34,26 @@ export function HeroSection({
         className="absolute right-0 top-0 h-full w-1/2 bg-ember-600/5"
         style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
       />
+
+      {/* Optional hero image — right half, faded into the background */}
+      {imageSrc && (
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-0 hidden h-full w-1/2 lg:block"
+          style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0% 100%)' }}
+        >
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            className="object-cover opacity-25"
+            priority
+            sizes="50vw"
+          />
+          {/* Gradient fade from left to hide the hard edge */}
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal-900 via-charcoal-900/40 to-transparent" />
+        </div>
+      )}
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">

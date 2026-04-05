@@ -1,8 +1,8 @@
 const STATS = [
-  { value: '15+', label: 'Years in business' },
-  { value: '2 400+', label: 'Projects completed' },
-  { value: '10', label: 'Provinces served' },
-  { value: '4.8★', label: 'Average rating' },
+  { value: '8+', label: 'Years in business' },
+  { value: '500+', label: 'Projects completed' },
+  { value: '8', label: 'Provinces serviced' },
+  { value: '4.9★', label: 'Average rating' },
 ];
 
 export function TrustBar() {

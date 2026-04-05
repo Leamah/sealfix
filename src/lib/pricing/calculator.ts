@@ -79,7 +79,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
   lines.push({
     label: 'Surface preparation',
     value: prepCost,
-    note: `${prepLevel} prep — ${formatZAR(prepRate)}/unit`,
+    note: `${prepLevel} prep at ${formatZAR(prepRate)}/unit`,
   });
 
   // 6. Access adjustment

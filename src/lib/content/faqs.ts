@@ -58,7 +58,7 @@ export const FAQS: FaqItem[] = [
     category: 'sealing',
     question: 'Do I need to seal new asphalt?',
     answer:
-      'New asphalt should cure for 90–180 days before sealing. After curing, sealing is highly recommended — it closes the surface pores, prevents oxidation, and significantly extends pavement life.',
+      'New asphalt should cure for 90 to 180 days before sealing. After curing, sealing is highly recommended: it closes the surface pores, prevents oxidation, and significantly extends pavement life.',
   },
 
   // Surfacing

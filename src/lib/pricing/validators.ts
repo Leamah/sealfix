@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const calculatorInputSchema = z.object({
-  mode: z.enum(['sealing', 'surfacing', 'line-marking', 'pothole']),
+  mode: z.enum(['sealing', 'surfacing', 'line-marking', 'pothole', 'signage']),
   quantity: z.number().min(1).max(100000),
   unit: z.enum(['sqm', 'linear-meters', 'each']),
   jobSizeTier: z.enum(['small', 'medium', 'large', 'major']),

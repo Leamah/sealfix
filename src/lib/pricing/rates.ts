@@ -6,6 +6,7 @@ export const BASE_RATES: Record<ServiceMode, number> = {
   surfacing: 180,
   'line-marking': 22,
   pothole: 350,
+  signage: 1800,
 };
 
 // Job size tier multipliers — larger jobs get volume discounts
@@ -52,6 +53,7 @@ export const PREP_RATES: Record<ServiceMode, Record<string, number>> = {
   surfacing: { light: 12, medium: 25, heavy: 50, demolition: 90 },
   'line-marking': { light: 3, medium: 6, heavy: 12, demolition: 20 },
   pothole: { light: 50, medium: 120, heavy: 250, demolition: 400 },
+  signage: { light: 0, medium: 50, heavy: 150, demolition: 300 },
 };
 
 // Service tier multipliers
@@ -72,4 +74,5 @@ export const MINIMUM_CHARGE: Record<ServiceMode, number> = {
   surfacing: 8000,
   'line-marking': 2500,
   pothole: 1500,
+  signage: 4000,
 };

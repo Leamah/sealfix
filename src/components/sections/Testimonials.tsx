@@ -1,21 +1,18 @@
 const TESTIMONIALS = [
   {
-    name: 'Pieter van der Berg',
-    title: 'Facilities Manager, Growthpoint Properties',
-    location: 'Johannesburg',
-    quote: 'SealFix sealed our 8 000 m² distribution centre yard on time and within budget. The preparation work was thorough and the finish is excellent. We\'ve already scheduled them for three more sites.',
+    name: 'Riaan Botha',
+    location: 'Kempton Park',
+    quote: 'Had our small yard sealed and bays marked. Good price, turned up on time, and the finish looks neat. Would use again.',
   },
   {
-    name: 'Thandi Mokoena',
-    title: 'Operations Director, Shoprite Holdings',
+    name: 'Nomsa K.',
+    location: 'Pretoria',
+    quote: 'They resealed our complex parking area over a weekend so tenants were not affected. No mess, no fuss. Happy with the result.',
+  },
+  {
+    name: 'André van Wyk',
     location: 'Cape Town',
-    quote: 'We needed line marking across six retail park sites in the Western Cape. SealFix coordinated the entire programme over two weekends with zero disruption to trading. Professional team from start to finish.',
-  },
-  {
-    name: 'Bruce Naidoo',
-    title: 'General Manager, Transnet Freight Rail',
-    location: 'Durban',
-    quote: 'The pothole repairs and reseal on our logistics yard in Durban Harbour were completed under very tight access conditions. SealFix managed the scheduling and safety requirements without a hitch.',
+    quote: 'Pothole repairs and line marking done in one visit. Straight lines, good quality paint. The online quote was close to the final price which I appreciated.',
   },
 ];
 
@@ -35,7 +32,6 @@ export function Testimonials() {
               </p>
               <footer className="mt-4 border-t border-charcoal-700 pt-4">
                 <p className="text-sm font-semibold text-sand-100">{t.name}</p>
-                <p className="text-xs text-sand-400">{t.title}</p>
                 <p className="text-xs text-ember-400">{t.location}</p>
               </footer>
             </blockquote>

@@ -123,7 +123,7 @@ export const SERVICES: ServicePage[] = [
       {
         question: 'What is the difference between road paint and thermoplastic?',
         answer:
-          'Road paint is a solvent-based paint applied by brush or spray. Thermoplastic is a heated material that bonds to the surface — it is thicker, more durable, and lasts 3–5 times longer. We recommend thermoplastic for high-traffic areas.',
+          'Road paint is a solvent-based paint applied by brush or spray. Thermoplastic is a heated material that bonds to the surface; it is thicker, more durable, and lasts 3 to 5 times longer. We recommend thermoplastic for high-traffic areas.',
       },
       {
         question: 'How long does line marking last?',

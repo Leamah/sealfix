@@ -28,7 +28,7 @@ export function CalculatorShell({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="font-display text-3xl font-bold uppercase text-sand-100">{title}</h2>
         <p className="mt-2 text-sm text-sand-400">
-          Indicative pricing — subject to on-site inspection. Accepts price and proceed to request a written quote.
+          Indicative pricing, subject to on-site inspection. Accept the estimate and request a written quote below.
         </p>
         <div className="mt-8">
           <Calculator initialMode={mode} initialRegion={region} />

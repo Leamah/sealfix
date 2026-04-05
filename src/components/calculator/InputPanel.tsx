@@ -5,13 +5,18 @@ import { Label } from '@/components/ui/label';
 interface InputPanelProps {
   input: CalculatorInput;
   onChange: (updates: Partial<CalculatorInput>) => void;
+  /** Additional per-mode quantities when running a combination quote */
+  extraModes?: ServiceMode[];
+  extraQuantities?: Partial<Record<ServiceMode, number>>;
+  onExtraQuantityChange?: (mode: ServiceMode, qty: number) => void;
 }
 
 const UNIT_LABELS: Record<ServiceMode, string> = {
-  sealing: 'Square metres (m²)',
-  surfacing: 'Square metres (m²)',
-  'line-marking': 'Linear metres (lm)',
+  sealing: 'Sealing area (m²)',
+  surfacing: 'Surfacing area (m²)',
+  'line-marking': 'Line marking (linear metres)',
   pothole: 'Number of potholes',
+  signage: 'Number of signs',
 };
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
@@ -26,7 +31,13 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 const selectClass =
   'w-full rounded border border-charcoal-600 bg-charcoal-700 px-3 py-2 text-sm text-sand-100 focus:border-ember-500 focus:outline-none focus:ring-1 focus:ring-ember-500';
 
-export function InputPanel({ input, onChange }: InputPanelProps) {
+export function InputPanel({
+  input,
+  onChange,
+  extraModes = [],
+  extraQuantities = {},
+  onExtraQuantityChange,
+}: InputPanelProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <Field label={UNIT_LABELS[input.mode]}>
@@ -41,16 +52,33 @@ export function InputPanel({ input, onChange }: InputPanelProps) {
         />
       </Field>
 
+      {/* Extra mode quantities for combination quotes */}
+      {extraModes.map((mode) => (
+        <Field key={mode} label={UNIT_LABELS[mode]}>
+          <input
+            type="number"
+            min={1}
+            max={100000}
+            value={extraQuantities[mode] ?? 1}
+            onChange={(e) =>
+              onExtraQuantityChange?.(mode, Math.max(1, Number(e.target.value)))
+            }
+            className={selectClass}
+            aria-label={UNIT_LABELS[mode]}
+          />
+        </Field>
+      ))}
+
       <Field label="Job size">
         <select
           value={input.jobSizeTier}
           onChange={(e) => onChange({ jobSizeTier: e.target.value as CalculatorInput['jobSizeTier'] })}
           className={selectClass}
         >
-          <option value="small">Small (&lt;200 units)</option>
-          <option value="medium">Medium (200–1 000)</option>
-          <option value="large">Large (1 000–5 000)</option>
-          <option value="major">Major (&gt;5 000)</option>
+          <option value="small">Small (under 200 units)</option>
+          <option value="medium">Medium (200 to 1 000)</option>
+          <option value="large">Large (1 000 to 5 000)</option>
+          <option value="major">Major (over 5 000)</option>
         </select>
       </Field>
 
@@ -87,9 +115,9 @@ export function InputPanel({ input, onChange }: InputPanelProps) {
           onChange={(e) => onChange({ accessDifficulty: e.target.value as CalculatorInput['accessDifficulty'] })}
           className={selectClass}
         >
-          <option value="easy">Easy — open site</option>
-          <option value="moderate">Moderate — some restrictions</option>
-          <option value="restricted">Restricted — confined access</option>
+          <option value="easy">Easy (open site)</option>
+          <option value="moderate">Moderate (some restrictions)</option>
+          <option value="restricted">Restricted (confined access)</option>
           <option value="crane">Crane / special lift required</option>
         </select>
       </Field>
@@ -100,9 +128,9 @@ export function InputPanel({ input, onChange }: InputPanelProps) {
           onChange={(e) => onChange({ prepLevel: e.target.value as CalculatorInput['prepLevel'] })}
           className={selectClass}
         >
-          <option value="light">Light — clean only</option>
-          <option value="medium">Medium — crack repair + clean</option>
-          <option value="heavy">Heavy — patching + repair</option>
+          <option value="light">Light (clean only)</option>
+          <option value="medium">Medium (crack repair + clean)</option>
+          <option value="heavy">Heavy (patching + repair)</option>
           <option value="demolition">Full demolition / reconstruction</option>
         </select>
       </Field>

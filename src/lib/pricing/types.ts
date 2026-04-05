@@ -1,4 +1,4 @@
-export type ServiceMode = 'sealing' | 'surfacing' | 'line-marking' | 'pothole';
+export type ServiceMode = 'sealing' | 'surfacing' | 'line-marking' | 'pothole' | 'signage';
 export type MeasurementUnit = 'sqm' | 'linear-meters' | 'each';
 
 export interface CalculatorInput {

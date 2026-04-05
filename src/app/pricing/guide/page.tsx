@@ -15,8 +15,8 @@ const PRICE_TABLE = [
   { service: 'Sealing (economy)', unit: 'per m²', low: 'R38', high: 'R52', notes: 'Clean, good condition surface' },
   { service: 'Sealing (standard)', unit: 'per m²', low: 'R45', high: 'R65', notes: 'Standard prep and sealer' },
   { service: 'Sealing (premium)', unit: 'per m²', low: 'R55', high: 'R80', notes: 'Rubberised sealer, high-traffic' },
-  { service: 'Surfacing — overlay', unit: 'per m²', low: 'R150', high: 'R250', notes: '30–40 mm wear course' },
-  { service: 'Surfacing — new construction', unit: 'per m²', low: 'R200', high: 'R380', notes: 'Including base preparation' },
+  { service: 'Surfacing: Overlay', unit: 'per m²', low: 'R150', high: 'R250', notes: '30-40 mm wear course' },
+  { service: 'Surfacing: New Construction', unit: 'per m²', low: 'R200', high: 'R380', notes: 'Including base preparation' },
   { service: 'Line marking (road paint)', unit: 'per lm', low: 'R18', high: 'R28', notes: 'Standard road paint' },
   { service: 'Line marking (thermoplastic)', unit: 'per lm', low: 'R35', high: 'R55', notes: 'Heated thermoplastic' },
   { service: 'Pothole repair', unit: 'per pothole', low: 'R280', high: 'R550', notes: 'Depending on size and depth' },
@@ -73,7 +73,7 @@ export default function PricingGuidePage() {
 
           <p className="mt-6 text-xs text-sand-400">
             * All prices include VAT at 15%. Minimum charges apply. Regional adjustments may apply outside Gauteng.
-            Prices correct at time of publication — use the calculator for a current estimate.
+            Prices correct at time of publication. Use the calculator for a current estimate.
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ import { COMPANY } from '@/lib/content/company';
 export const metadata: Metadata = buildMetadata({
   title: 'About SealFix SA | South African Sealing & Surfacing Specialist',
   description:
-    'Over 15 years of specialist sealing, surfacing, and line marking across South Africa. Commercial and industrial contractor serving all major provinces.',
+    'Over 8 years of specialist sealing, surfacing, and line marking across South Africa. Commercial and industrial contractor serving 8 provinces.',
   path: '/about',
 });
 
@@ -32,11 +32,11 @@ export default function AboutPage() {
             <p>
               Our team includes experienced site managers, qualified plant operators, and dedicated crews who understand
               the demands of working in live commercial environments. We manage our own fleet of plant and equipment,
-              which means we control scheduling, quality, and cost — and can respond rapidly to urgent requirements.
+              which means we control scheduling, quality, and cost, and can respond rapidly to urgent requirements.
             </p>
             <p>
               We believe pricing should be transparent. That is why we built South Africa&apos;s first real-time
-              sealing and surfacing cost calculator — so clients can get an indicative price before picking up the phone.
+              sealing and surfacing cost calculator so clients can get an indicative price before picking up the phone.
               No obligation, no call required.
             </p>
           </div>
@@ -45,12 +45,12 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl font-bold uppercase text-sand-100">Why clients choose us</h2>
             <ul className="mt-4 space-y-3">
               {[
-                'Fixed-price written quotes — no surprises',
+                'Fixed-price written quotes, no surprises',
                 'Own fleet of compactors, pavers, and line marking machines',
                 'After-hours and weekend scheduling available',
                 'Workmanship guarantee on every job',
                 'SANS-compliant disabled bay markings',
-                'Coal-tar-free sealers — environmentally responsible',
+                'Coal-tar-free sealers (environmentally responsible)',
               ].map((point) => (
                 <li key={point} className="flex items-start gap-3 text-sand-300">
                   <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-ember-400" aria-hidden="true" />

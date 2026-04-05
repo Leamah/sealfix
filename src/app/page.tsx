@@ -18,11 +18,13 @@ export default function HomePage() {
     <>
       <HeroSection
         title="Sealing. Surfacing. Line Marking."
-        subtitle="South Africa's specialist commercial contractor. Get an instant cost estimate for your parking lot, warehouse yard, or road — no call required."
+        subtitle="South Africa's specialist commercial contractor. Get an instant cost estimate for your parking lot, warehouse yard, or road. No call required."
         ctaLabel="Get Free Estimate"
         ctaHref="#calculator"
         secondaryCtaLabel="Call Us Now"
         secondaryCtaHref="tel:+27110000000"
+        imageSrc="/62384ee6-dedb-49ec-9dff-00162b92e28a.png"
+        imageAlt="SealFix team working on a road surfacing project"
       />
       <TrustBar />
       <ServiceCards />

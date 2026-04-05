@@ -8,7 +8,7 @@ import { AREAS } from '@/lib/content/areas';
 export const metadata: Metadata = buildMetadata({
   title: 'Areas Served | South Africa Sealing & Surfacing Contractor',
   description:
-    'SealFix SA operates across all major South African provinces — Gauteng, Western Cape, KwaZulu-Natal, Eastern Cape, and more. Find your nearest service area.',
+    'SealFix SA operates across all major South African provinces: Gauteng, Western Cape, KwaZulu-Natal, Eastern Cape, and more. Find your nearest service area.',
   path: '/areas',
 });
 

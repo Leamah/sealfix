@@ -42,7 +42,7 @@ export default function SurfacingPage() {
           <p className="mt-4 max-w-2xl text-sand-300">
             From new parking lot construction to full reconstruction of deteriorated industrial yards, we provide a
             complete asphalt surfacing service. Our team handles site survey, sub-base assessment, design,
-            base preparation, asphalt laying, and compaction — with a workmanship guarantee on every job.
+            base preparation, asphalt laying, and compaction, with a workmanship guarantee on every job.
           </p>
           <p className="mt-3 max-w-2xl text-sand-300">
             We specify the correct asphalt depth for your expected axle loads: 30–40 mm wearing course for standard

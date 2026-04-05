@@ -3,16 +3,33 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { leadFormSchema, type LeadFormValues } from '@/lib/pricing/validators';
-import type { CalculatorResult, CalculatorInput } from '@/lib/pricing/types';
+import type { CalculatorResult, CalculatorInput, ServiceMode } from '@/lib/pricing/types';
 import { formatZAR } from '@/lib/utils';
 
 interface LeadCaptureFormProps {
   result: CalculatorResult;
   input: CalculatorInput;
   onSuccess: () => void;
+  /** Set when multiple services are combined */
+  combinedTotal?: number;
+  combinedSubtotal?: number;
+  selectedModes?: ServiceMode[];
 }
 
-export function LeadCaptureForm({ result, input, onSuccess }: LeadCaptureFormProps) {
+export function LeadCaptureForm({
+  result,
+  input,
+  onSuccess,
+  combinedTotal,
+  combinedSubtotal,
+  selectedModes,
+}: LeadCaptureFormProps) {
+  const displayTotal = combinedTotal ?? result.total;
+  const displaySubtotal = combinedSubtotal ?? result.subtotal;
+  const modeLabel = selectedModes && selectedModes.length > 1
+    ? selectedModes.join(' + ')
+    : input.mode;
+
   const {
     register,
     handleSubmit,
@@ -21,9 +38,9 @@ export function LeadCaptureForm({ result, input, onSuccess }: LeadCaptureFormPro
     resolver: zodResolver(leadFormSchema),
     defaultValues: {
       acceptedTandCs: true,
-      calculatorMode: input.mode,
-      estimateTotal: result.total,
-      estimateSubtotal: result.subtotal,
+      calculatorMode: modeLabel,
+      estimateTotal: displayTotal,
+      estimateSubtotal: displaySubtotal,
       region: input.region,
       quantity: input.quantity,
       unit: input.unit,
@@ -44,7 +61,8 @@ export function LeadCaptureForm({ result, input, onSuccess }: LeadCaptureFormPro
       <div className="rounded border border-moss-500 bg-moss-600/10 p-6 text-center">
         <p className="font-display text-xl font-bold uppercase text-moss-400">Quote request received</p>
         <p className="mt-2 text-sm text-sand-300">
-          We will review your estimate of <strong className="text-ember-400">{formatZAR(result.total)}</strong> and
+          We will review your estimate of{' '}
+          <strong className="text-ember-400">{formatZAR(displayTotal)}</strong> and
           contact you within one business day.
         </p>
       </div>
@@ -58,7 +76,8 @@ export function LeadCaptureForm({ result, input, onSuccess }: LeadCaptureFormPro
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <p className="font-semibold text-sand-100">Request your quote</p>
       <p className="text-xs text-sand-400">
-        Estimated total: <strong className="text-ember-400">{formatZAR(result.total)}</strong> — we will confirm
+        Estimated total:{' '}
+        <strong className="text-ember-400">{formatZAR(displayTotal)}</strong>. We will confirm
         after a site inspection.
       </p>
 
@@ -101,7 +120,7 @@ export function LeadCaptureForm({ result, input, onSuccess }: LeadCaptureFormPro
         disabled={isSubmitting}
         className="w-full rounded bg-ember-500 py-3 font-semibold text-charcoal-900 transition-colors hover:bg-ember-400 disabled:opacity-50"
       >
-        {isSubmitting ? 'Sending…' : 'Request Quote'}
+        {isSubmitting ? 'Sending...' : 'Request Quote'}
       </button>
     </form>
   );

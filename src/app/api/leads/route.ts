@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { leadFormSchema } from '@/lib/pricing/validators';
+import { appendLeadToSheet } from '@/lib/sheets';
 import { randomUUID } from 'crypto';
 
 export async function POST(request: NextRequest) {
@@ -19,11 +20,29 @@ export async function POST(request: NextRequest) {
     ...parsed.data,
   };
 
-  // Log to console (Phase 2: replace with database / email service)
   console.log('[LEAD]', JSON.stringify(lead, null, 2));
 
-  // TODO Phase 2: send email via Resend or nodemailer
-  // await sendLeadEmail(lead);
+  // Write to Google Sheets (leamahgroup@gmail.com)
+  try {
+    await appendLeadToSheet([
+      lead.id,
+      lead.createdAt,
+      lead.name,
+      lead.company ?? '',
+      lead.phone,
+      lead.email,
+      lead.calculatorMode,
+      String(lead.estimateTotal),
+      String(lead.estimateSubtotal),
+      lead.region,
+      String(lead.quantity),
+      lead.unit,
+      lead.notes ?? '',
+    ]);
+  } catch (err) {
+    // Log but don't fail the request — lead is already captured in console
+    console.error('[LEAD] Google Sheets write failed:', err);
+  }
 
   return NextResponse.json({ success: true, id: lead.id });
 }
