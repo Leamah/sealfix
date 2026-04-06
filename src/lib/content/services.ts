@@ -21,9 +21,7 @@ export const SERVICES: ServicePage[] = [
       'Total surface area (m²)',
       'Current pavement condition',
       'Prep and repair requirements',
-      'Access difficulty',
       'Urgency of works',
-      'Service tier (economy, standard, premium)',
     ],
     faqs: [
       {
@@ -69,7 +67,6 @@ export const SERVICES: ServicePage[] = [
       'Size and depth of each pothole',
       'Mix type required (cold-mix vs hot-mix)',
       'Surface preparation required',
-      'Access difficulty',
       'Urgency (standard vs emergency callout)',
     ],
     faqs: [
@@ -117,7 +114,6 @@ export const SERVICES: ServicePage[] = [
       'Paint type (road paint vs thermoplastic)',
       'Surface preparation required',
       'Number of colours',
-      'Access and working hours',
     ],
     faqs: [
       {
@@ -139,6 +135,98 @@ export const SERVICES: ServicePage[] = [
         question: 'Can you remark over existing faded markings?',
         answer:
           'Yes. We can apply new markings over faded existing lines. Where old markings are in incorrect positions, we can blast-clean them before remarking.',
+      },
+    ],
+  },
+  {
+    slug: 'signage-physical',
+    title: 'Physical Sign Supply & Erection',
+    shortTitle: 'Sign Erection',
+    description:
+      'Supply and erection of road signs, parking signs, speed limit signs, and directional signs for residential estates, commercial sites, and industrial yards.',
+    heroImage: '/images/hero-signage.jpg',
+    calculatorMode: 'signage-physical',
+    useCases: [
+      'Stop signs and yield signs',
+      'Speed limit signs',
+      'Directional and wayfinding signs',
+      'Parking restriction signs',
+      'Estate entrance signage',
+      'Safety and hazard signs',
+    ],
+    pricingFactors: [
+      'Number of signs',
+      'Sign type and size',
+      'Post supply and installation',
+      'Surface or ground conditions',
+      'Site access',
+    ],
+    faqs: [
+      {
+        question: 'Do you supply the signs or do I need to provide them?',
+        answer:
+          'We supply and install. Our price includes the sign face, post, fixings, and erection. If you have signs already, we can install them at a reduced rate.',
+      },
+      {
+        question: 'Do your signs comply with South African road sign standards?',
+        answer:
+          'Yes. All road signs comply with SANS 1519 and the South African Road Traffic Signs Manual (SARTSM). Parking and estate signs follow the relevant municipal by-laws.',
+      },
+      {
+        question: 'How long does installation take?',
+        answer:
+          'Most sign installations are completed in a single day. Larger sites with many signs may require two days. We will advise during quoting.',
+      },
+      {
+        question: 'Can signs be installed in paved or concrete surfaces?',
+        answer:
+          'Yes. We use appropriate core-drill and sleeve anchor techniques for hard surfaces, or direct burial for unpaved areas.',
+      },
+    ],
+  },
+  {
+    slug: 'signage-painted',
+    title: 'Painted Road Symbols & Signage',
+    shortTitle: 'Painted Signage',
+    description:
+      'Professional painting of disabled parking symbols, arrows, speed numbers, STOP lettering, and other road symbols on asphalt and concrete surfaces.',
+    heroImage: '/images/hero-signage.jpg',
+    calculatorMode: 'signage-painted',
+    useCases: [
+      'Disabled parking bay symbols (SANS compliant)',
+      'STOP and SLOW lettering',
+      'Speed limit numbers on road surface',
+      'Directional arrows',
+      'No-parking zones',
+      'Pedestrian crossing symbols',
+    ],
+    pricingFactors: [
+      'Number of symbols',
+      'Symbol type and size',
+      'Paint type (road paint vs thermoplastic)',
+      'Surface preparation required',
+      'Number of colours',
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between painted symbols and physical signs?',
+        answer:
+          'Painted symbols are applied directly onto the road or parking surface. Physical signs are mounted on posts above ground level. Many projects require both for full compliance.',
+      },
+      {
+        question: 'How long does painted signage last?',
+        answer:
+          'Road paint symbols last 1 to 2 years under normal traffic. Thermoplastic symbols last 4 to 7 years and are more durable. We recommend thermoplastic for high-traffic areas.',
+      },
+      {
+        question: 'Do disabled parking symbols comply with SANS standards?',
+        answer:
+          'Yes. We paint disabled bay symbols to SANS 10400-S dimensions and specifications. The correct wheelchair symbol, bay dimensions, and colour are applied.',
+      },
+      {
+        question: 'Can you repaint over existing faded symbols?',
+        answer:
+          'Yes. Faded symbols can be overpainted. Where old symbols are in the wrong position, we can apply blackout paint first to mask them before repainting.',
       },
     ],
   },

@@ -2,7 +2,6 @@ import type { CalculatorInput, CalculatorResult, CalculatorLineItem } from './ty
 import {
   REGION_MULTIPLIERS,
   URGENCY_MULTIPLIERS,
-  SERVICE_TIER_MULTIPLIERS,
   VAT_RATE,
   MINIMUM_CHARGE,
 } from './rates';
@@ -10,15 +9,7 @@ import { getEffectiveRates, calcJobSizeTier } from './rate-store';
 import { formatZAR } from '@/lib/utils';
 
 export function calculate(input: CalculatorInput): CalculatorResult {
-  const {
-    mode,
-    quantity,
-    unit,
-    region,
-    urgency,
-    prepLevel,
-    serviceTier,
-  } = input;
+  const { mode, quantity, unit, region, urgency, prepLevel } = input;
 
   const rates = getEffectiveRates();
   const lines: CalculatorLineItem[] = [];
@@ -32,15 +23,15 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     note: `${formatZAR(baseRate)} x ${quantity.toLocaleString('en-ZA')} units`,
   });
 
-  // 2. Job size tier (auto-calculated from quantity)
+  // 2. Job size tier (auto-calculated)
   const jobSizeTier = calcJobSizeTier(unit, quantity);
   const sizeMultiplier = rates.jobSizeMultipliers[jobSizeTier];
   const sizeAdjusted = baseAmount * sizeMultiplier;
-  const tierAdjustment = sizeAdjusted - baseAmount;
-  if (tierAdjustment !== 0) {
+  const sizeAdjustment = sizeAdjusted - baseAmount;
+  if (sizeAdjustment !== 0) {
     lines.push({
       label: 'Job size adjustment',
-      value: tierAdjustment,
+      value: sizeAdjustment,
       note: `${jobSizeTier} job (x${sizeMultiplier})`,
     });
   }
@@ -57,19 +48,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     });
   }
 
-  // 4. Service tier
-  const tierMultiplier = SERVICE_TIER_MULTIPLIERS[serviceTier];
-  const tierAdjusted = regionAdjusted * tierMultiplier;
-  const serviceTierAdjustment = tierAdjusted - regionAdjusted;
-  if (serviceTierAdjustment !== 0) {
-    lines.push({
-      label: 'Service tier',
-      value: serviceTierAdjustment,
-      note: `${serviceTier} (x${tierMultiplier})`,
-    });
-  }
-
-  // 5. Surface preparation
+  // 4. Surface preparation
   const prepRate = rates.prepRates[mode][prepLevel];
   const prepCost = prepRate * quantity;
   lines.push({
@@ -78,9 +57,9 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     note: `${prepLevel} prep at ${formatZAR(prepRate)}/unit`,
   });
 
-  // 6. Urgency surcharge
+  // 5. Urgency surcharge
   const urgencyMultiplier = URGENCY_MULTIPLIERS[urgency];
-  const urgencyAdjustment = tierAdjusted * (urgencyMultiplier - 1);
+  const urgencyAdjustment = regionAdjusted * (urgencyMultiplier - 1);
   if (urgencyAdjustment > 0) {
     lines.push({
       label: 'Urgency surcharge',
@@ -89,9 +68,9 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     });
   }
 
-  const materialTotal = tierAdjusted + prepCost + urgencyAdjustment;
+  const materialTotal = regionAdjusted + prepCost + urgencyAdjustment;
 
-  // 8. Overhead
+  // 6. Overhead
   const overhead = materialTotal * rates.overheadPct;
   lines.push({
     label: 'Overhead & management',
@@ -99,7 +78,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     note: `${(rates.overheadPct * 100).toFixed(0)}%`,
   });
 
-  // 9. Contingency
+  // 7. Contingency
   const contingency = materialTotal * rates.contingencyPct;
   lines.push({
     label: 'Contingency',
@@ -107,12 +86,12 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     note: `${(rates.contingencyPct * 100).toFixed(0)}%`,
   });
 
-  // 10. Subtotal (enforce minimum)
+  // 8. Subtotal (enforce minimum)
   const rawSubtotal = materialTotal + overhead + contingency;
   const minimum = MINIMUM_CHARGE[mode];
   const subtotal = Math.max(rawSubtotal, minimum);
 
-  // 11. VAT
+  // 9. VAT
   const vat = subtotal * VAT_RATE;
   const total = subtotal + vat;
   const perUnitRate = subtotal / quantity;
@@ -126,4 +105,14 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     disclaimer:
       'This estimate is indicative only and subject to on-site inspection. Final pricing will be confirmed in a written quote. All prices include VAT at 15%.',
   };
+}
+
+/** Upper-bound estimate: emergency urgency + heavy prep, for range display */
+export function calculateHigh(input: CalculatorInput): CalculatorResult {
+  return calculate({ ...input, urgency: 'emergency', prepLevel: 'heavy' });
+}
+
+/** True when the input is already at the highest settings — no range needed */
+export function isAtHighEnd(input: CalculatorInput): boolean {
+  return input.urgency === 'emergency' && input.prepLevel === 'heavy';
 }

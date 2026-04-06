@@ -14,7 +14,8 @@ const UNIT_LABELS: Record<ServiceMode, string> = {
   sealing: 'Sealing area (m²)',
   'line-marking': 'Line marking (linear metres)',
   pothole: 'Number of potholes',
-  signage: 'Number of signs',
+  'signage-physical': 'Number of signs to erect',
+  'signage-painted': 'Number of painted symbols',
 };
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
@@ -103,18 +104,6 @@ export function InputPanel({
           <option value="medium">Medium (crack repair + clean)</option>
           <option value="heavy">Heavy (patching + repair)</option>
           <option value="demolition">Full demolition / reconstruction</option>
-        </select>
-      </Field>
-
-      <Field label="Service tier">
-        <select
-          value={input.serviceTier}
-          onChange={(e) => onChange({ serviceTier: e.target.value as CalculatorInput['serviceTier'] })}
-          className={selectClass}
-        >
-          <option value="economy">Economy</option>
-          <option value="standard">Standard</option>
-          <option value="premium">Premium</option>
         </select>
       </Field>
     </div>

@@ -1,13 +1,12 @@
 import { z } from 'zod';
 
 export const calculatorInputSchema = z.object({
-  mode: z.enum(['sealing', 'line-marking', 'pothole', 'signage']),
+  mode: z.enum(['sealing', 'line-marking', 'pothole', 'signage-physical', 'signage-painted']),
   quantity: z.number().min(1).max(100000),
   unit: z.enum(['sqm', 'linear-meters', 'each']),
   region: z.string().min(1),
   urgency: z.enum(['standard', 'expedited', 'emergency']),
   prepLevel: z.enum(['light', 'medium', 'heavy', 'demolition']),
-  serviceTier: z.enum(['economy', 'standard', 'premium']),
 });
 
 export const leadFormSchema = z.object({
@@ -17,7 +16,6 @@ export const leadFormSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   notes: z.string().optional(),
   acceptedTandCs: z.literal(true, 'You must accept the terms and conditions'),
-  // Calculator context stored with the lead
   calculatorMode: z.string(),
   estimateTotal: z.number(),
   estimateSubtotal: z.number(),

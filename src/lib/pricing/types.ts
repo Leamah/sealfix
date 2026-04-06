@@ -1,4 +1,4 @@
-export type ServiceMode = 'sealing' | 'line-marking' | 'pothole' | 'signage';
+export type ServiceMode = 'sealing' | 'line-marking' | 'pothole' | 'signage-physical' | 'signage-painted';
 export type MeasurementUnit = 'sqm' | 'linear-meters' | 'each';
 
 export interface CalculatorInput {
@@ -8,7 +8,6 @@ export interface CalculatorInput {
   region: string;
   urgency: 'standard' | 'expedited' | 'emergency';
   prepLevel: 'light' | 'medium' | 'heavy' | 'demolition';
-  serviceTier: 'economy' | 'standard' | 'premium';
 }
 
 export interface CalculatorLineItem {

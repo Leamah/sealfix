@@ -4,7 +4,8 @@ const MODES: Array<{ value: ServiceMode; label: string; unit: string }> = [
   { value: 'sealing', label: 'Sealing', unit: 'per m²' },
   { value: 'line-marking', label: 'Line Marking', unit: 'per lm' },
   { value: 'pothole', label: 'Pothole Repair', unit: 'per pothole' },
-  { value: 'signage', label: 'Signage', unit: 'per sign' },
+  { value: 'signage-physical', label: 'Sign Erection', unit: 'per sign' },
+  { value: 'signage-painted', label: 'Painted Signage', unit: 'per symbol' },
 ];
 
 interface ModeSelectorProps {
@@ -15,7 +16,7 @@ interface ModeSelectorProps {
 export function ModeSelector({ selected, onChange }: ModeSelectorProps) {
   function toggle(mode: ServiceMode) {
     if (selected.includes(mode)) {
-      if (selected.length === 1) return; // keep at least one selected
+      if (selected.length === 1) return;
       onChange(selected.filter((m) => m !== mode));
     } else {
       onChange([...selected, mode]);

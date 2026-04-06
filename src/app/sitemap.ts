@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/sealing`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/services/pothole-repair`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/services/line-marking`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/services/signage-physical`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/services/signage-painted`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/pricing`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/pricing/guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/areas`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
