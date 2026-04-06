@@ -5,9 +5,9 @@ import { CalculatorShell } from '@/components/calculator/CalculatorShell';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Pricing Calculator | Instant Sealing & Surfacing Estimate',
+  title: 'Pricing Calculator | Instant Sealing & Pothole Repair Estimate',
   description:
-    'Get an instant cost estimate for sealing, surfacing, line marking, or pothole repair in South Africa. No call required. All prices include VAT.',
+    'Get an instant cost estimate for sealing, pothole repair, line marking, or signage in South Africa. No call required. All prices include VAT.',
   path: '/pricing',
 });
 

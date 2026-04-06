@@ -14,11 +14,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${COMPANY.name} | Sealing, Surfacing & Line Marking`,
+    default: `${COMPANY.name} | Sealing, Pothole Repair & Line Marking`,
     template: `%s | ${COMPANY.name}`,
   },
   description:
-    'South African specialist contractor for sealing, surfacing, and line marking. Get an instant online estimate. Serving all major provinces.',
+    'South African specialist contractor for sealing, pothole repair, line marking, and signage. Residential and commercial. Get an instant online estimate. Serving 8 provinces.',
   metadataBase: new URL(COMPANY.url),
   openGraph: {
     siteName: COMPANY.name,

@@ -12,7 +12,6 @@ import { formatZAR } from '@/lib/utils';
 
 const UNIT_FOR_MODE: Record<ServiceMode, CalculatorInput['unit']> = {
   sealing: 'sqm',
-  surfacing: 'sqm',
   'line-marking': 'linear-meters',
   pothole: 'each',
   signage: 'each',

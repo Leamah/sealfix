@@ -18,7 +18,7 @@ export default function GalleryPage() {
           <Breadcrumbs items={[{ name: 'Gallery', path: '/gallery' }]} />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100">Project Gallery</h1>
           <p className="mt-3 text-sand-300">
-            A selection of completed sealing, surfacing, and line marking projects across South Africa.
+            A selection of completed sealing, pothole repair, and line marking projects across South Africa.
             Photography and full case studies coming soon.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

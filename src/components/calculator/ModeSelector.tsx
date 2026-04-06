@@ -2,7 +2,6 @@ import type { ServiceMode } from '@/lib/pricing/types';
 
 const MODES: Array<{ value: ServiceMode; label: string; unit: string }> = [
   { value: 'sealing', label: 'Sealing', unit: 'per m²' },
-  { value: 'surfacing', label: 'Surfacing', unit: 'per m²' },
   { value: 'line-marking', label: 'Line Marking', unit: 'per lm' },
   { value: 'pothole', label: 'Pothole Repair', unit: 'per pothole' },
   { value: 'signage', label: 'Signage', unit: 'per sign' },
