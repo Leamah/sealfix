@@ -7,7 +7,6 @@ export interface CalculatorInput {
   unit: MeasurementUnit;
   region: string;
   urgency: 'standard' | 'expedited' | 'emergency';
-  accessDifficulty: 'easy' | 'moderate' | 'restricted' | 'crane';
   prepLevel: 'light' | 'medium' | 'heavy' | 'demolition';
   serviceTier: 'economy' | 'standard' | 'premium';
 }

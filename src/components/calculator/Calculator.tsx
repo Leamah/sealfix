@@ -24,7 +24,6 @@ function buildDefaultInput(mode: ServiceMode, region?: string): CalculatorInput 
     unit: UNIT_FOR_MODE[mode],
     region: region ?? 'johannesburg',
     urgency: 'standard',
-    accessDifficulty: 'easy',
     prepLevel: 'light',
     serviceTier: 'standard',
   };

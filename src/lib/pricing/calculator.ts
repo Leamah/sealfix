@@ -2,7 +2,6 @@ import type { CalculatorInput, CalculatorResult, CalculatorLineItem } from './ty
 import {
   REGION_MULTIPLIERS,
   URGENCY_MULTIPLIERS,
-  ACCESS_MULTIPLIERS,
   SERVICE_TIER_MULTIPLIERS,
   VAT_RATE,
   MINIMUM_CHARGE,
@@ -17,7 +16,6 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     unit,
     region,
     urgency,
-    accessDifficulty,
     prepLevel,
     serviceTier,
   } = input;
@@ -80,18 +78,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     note: `${prepLevel} prep at ${formatZAR(prepRate)}/unit`,
   });
 
-  // 6. Access surcharge
-  const accessMultiplier = ACCESS_MULTIPLIERS[accessDifficulty];
-  const accessAdjustment = tierAdjusted * (accessMultiplier - 1);
-  if (accessAdjustment > 0) {
-    lines.push({
-      label: 'Access surcharge',
-      value: accessAdjustment,
-      note: `${accessDifficulty} access`,
-    });
-  }
-
-  // 7. Urgency surcharge
+  // 6. Urgency surcharge
   const urgencyMultiplier = URGENCY_MULTIPLIERS[urgency];
   const urgencyAdjustment = tierAdjusted * (urgencyMultiplier - 1);
   if (urgencyAdjustment > 0) {
@@ -102,7 +89,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     });
   }
 
-  const materialTotal = tierAdjusted + prepCost + accessAdjustment + urgencyAdjustment;
+  const materialTotal = tierAdjusted + prepCost + urgencyAdjustment;
 
   // 8. Overhead
   const overhead = materialTotal * rates.overheadPct;

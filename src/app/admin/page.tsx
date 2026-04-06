@@ -1,8 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import type { ServiceMode } from '@/lib/pricing/types';
 import type { EffectiveRates, PrepLevels, TierMultipliers, TierThresholds } from '@/lib/pricing/rate-store';
+
+const Calculator = dynamic(() => import('@/components/calculator/Calculator').then((m) => m.Calculator), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-48 items-center justify-center rounded border border-charcoal-700 bg-charcoal-800">
+      <span className="text-sm text-sand-400">Loading calculator…</span>
+    </div>
+  ),
+});
 
 const MODES: ServiceMode[] = ['sealing', 'line-marking', 'pothole', 'signage'];
 const MODE_LABELS: Record<ServiceMode, string> = {
@@ -20,7 +30,7 @@ const MODE_UNITS: Record<ServiceMode, string> = {
 const PREP_LEVELS: (keyof PrepLevels)[] = ['light', 'medium', 'heavy', 'demolition'];
 const TIER_KEYS: (keyof TierMultipliers)[] = ['small', 'medium', 'large', 'major'];
 
-type Section = 'base' | 'prep' | 'overhead' | 'tiers' | 'thresholds';
+type Section = 'base' | 'prep' | 'overhead' | 'tiers' | 'thresholds' | 'calculator';
 
 const inputClass =
   'rounded border border-charcoal-600 bg-charcoal-700 px-2 py-1.5 text-sm text-sand-100 focus:border-ember-500 focus:outline-none focus:ring-1 focus:ring-ember-500 w-24';
@@ -121,6 +131,7 @@ export default function AdminPage() {
     { id: 'overhead', label: 'Overhead & Contingency' },
     { id: 'tiers', label: 'Job Size Multipliers' },
     { id: 'thresholds', label: 'Job Size Thresholds' },
+    { id: 'calculator', label: 'Live Tester' },
   ];
 
   if (!authed) {
@@ -320,7 +331,7 @@ export default function AdminPage() {
             </p>
             {(
               [
-                { unit: 'sqm' as const, label: 'Area-based (m²) — sealing & surfacing' },
+                { unit: 'sqm' as const, label: 'Area-based (m²) — sealing' },
                 { unit: 'linear-meters' as const, label: 'Linear metres (lm) — line marking' },
                 { unit: 'each' as const, label: 'Per-unit (each) — potholes & signage' },
               ] as const
@@ -342,6 +353,18 @@ export default function AdminPage() {
                 </div>
               </div>
             ))}
+          </section>
+        )}
+
+        {/* LIVE TESTER */}
+        {activeSection === 'calculator' && (
+          <section>
+            <h2 className="font-display text-lg font-bold uppercase text-sand-100 mb-1">Live Rate Tester</h2>
+            <p className="text-xs text-sand-400 mb-6">
+              Test your current rate settings in real time. Save your changes first, then use the calculator
+              below to verify the output. The T&amp;Cs and quote request form are disabled in this view.
+            </p>
+            <Calculator />
           </section>
         )}
 

@@ -6,7 +6,6 @@ export const calculatorInputSchema = z.object({
   unit: z.enum(['sqm', 'linear-meters', 'each']),
   region: z.string().min(1),
   urgency: z.enum(['standard', 'expedited', 'emergency']),
-  accessDifficulty: z.enum(['easy', 'moderate', 'restricted', 'crane']),
   prepLevel: z.enum(['light', 'medium', 'heavy', 'demolition']),
   serviceTier: z.enum(['economy', 'standard', 'premium']),
 });
