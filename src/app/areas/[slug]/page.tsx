@@ -21,8 +21,8 @@ export async function generateMetadata({
   const area = getAreaBySlug(slug);
   if (!area) return {};
   return buildMetadata({
-    title: `Sealing & Surfacing Contractor ${area.name} | Instant Price`,
-    description: `Professional sealing, surfacing, and line marking in ${area.name}, ${area.province}. Get an instant cost estimate online. Local specialist contractor.`,
+    title: `Sealing & Pothole Repair Contractor ${area.name} | Instant Price`,
+    description: `Professional sealing, pothole repair, and line marking in ${area.name}, ${area.province}. Get an instant cost estimate online. Residential and commercial specialist.`,
     path: `/areas/${area.slug}`,
   });
 }

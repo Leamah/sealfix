@@ -25,9 +25,9 @@ export default function AboutPage() {
           </h1>
           <div className="mt-6 space-y-4 text-sand-300 leading-relaxed">
             <p>
-              {COMPANY.name} is a South African specialist contractor for asphalt sealing, surfacing, and line marking.
+              {COMPANY.name} is a South African specialist contractor for asphalt sealing, pothole repair, line marking, and signage.
               Founded in {COMPANY.foundingYear}, we have built our reputation on delivering reliable, high-quality
-              pavement works for commercial, industrial, and municipal clients across all major provinces.
+              pavement works for residential, commercial, industrial, and municipal clients across 8 provinces.
             </p>
             <p>
               Our team includes experienced site managers, qualified plant operators, and dedicated crews who understand

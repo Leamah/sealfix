@@ -12,7 +12,6 @@ interface InputPanelProps {
 
 const UNIT_LABELS: Record<ServiceMode, string> = {
   sealing: 'Sealing area (m²)',
-  surfacing: 'Surfacing area (m²)',
   'line-marking': 'Line marking (linear metres)',
   pothole: 'Number of potholes',
   signage: 'Number of signs',

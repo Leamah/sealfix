@@ -10,11 +10,11 @@ export const SERVICES: ServicePage[] = [
     heroImage: '/images/hero-sealing.jpg',
     calculatorMode: 'sealing',
     useCases: [
+      'Residential driveway sealing',
       'Parking lot sealing',
       'Warehouse yard sealing',
       'Industrial estate roads',
       'Shopping centre forecourts',
-      'Airport aprons',
       'Municipal roads',
     ],
     pricingFactors: [
@@ -29,12 +29,12 @@ export const SERVICES: ServicePage[] = [
       {
         question: 'How long does sealing last?',
         answer:
-          'A quality seal coat applied to well-prepared asphalt lasts 3–5 years in South African conditions. Parking lots with heavy truck traffic may require resealing every 2–3 years.',
+          'A quality seal coat applied to well-prepared asphalt lasts 3 to 5 years in South African conditions. Parking lots with heavy truck traffic may require resealing every 2 to 3 years.',
       },
       {
         question: 'Can sealing be done in wet weather?',
         answer:
-          'No. Sealing requires dry conditions and surface temperatures above 10°C. We monitor weather forecasts and schedule jobs accordingly.',
+          'No. Sealing requires dry conditions and surface temperatures above 10 degrees Celsius. We monitor weather forecasts and schedule jobs accordingly.',
       },
       {
         question: 'What is the minimum area you seal?',
@@ -44,54 +44,54 @@ export const SERVICES: ServicePage[] = [
       {
         question: 'How soon after sealing can vehicles drive on the surface?',
         answer:
-          'Typically 24 hours for light vehicles and 48–72 hours for heavy trucks, depending on temperature and humidity.',
+          'Typically 24 hours for light vehicles and 48 to 72 hours for heavy trucks, depending on temperature and humidity.',
       },
     ],
   },
   {
-    slug: 'surfacing',
-    title: 'Asphalt & Paving Surfacing',
-    shortTitle: 'Surfacing',
+    slug: 'pothole-repair',
+    title: 'Pothole & Pavement Repair',
+    shortTitle: 'Pothole Repair',
     description:
-      'New asphalt surfacing, overlay, and reconstruction for commercial roads, parking areas, and industrial yards. Full design-to-completion service.',
-    heroImage: '/images/hero-surfacing.jpg',
-    calculatorMode: 'surfacing',
+      'Fast, durable pothole patching for residential driveways, commercial parking areas, and industrial yards. Cold-mix and hot-mix options.',
+    heroImage: '/images/hero-pothole.jpg',
+    calculatorMode: 'pothole',
     useCases: [
-      'New parking lot construction',
-      'Asphalt overlay on existing surface',
-      'Industrial road construction',
-      'Logistics yard surfacing',
-      'Retail park roads',
-      'Estate internal roads',
+      'Residential driveway potholes',
+      'Parking lot pothole repair',
+      'Industrial yard repairs',
+      'Road edge and kerb repairs',
+      'General pavement crack sealing',
+      'Emergency callout repairs',
     ],
     pricingFactors: [
-      'Total area (m²)',
-      'Base preparation required',
-      'Asphalt depth specification',
-      'Sub-base condition',
-      'Drainage requirements',
-      'Access for plant and equipment',
+      'Number of potholes',
+      'Size and depth of each pothole',
+      'Mix type required (cold-mix vs hot-mix)',
+      'Surface preparation required',
+      'Access difficulty',
+      'Urgency (standard vs emergency callout)',
     ],
     faqs: [
       {
-        question: 'What thickness of asphalt do you lay?',
+        question: 'What is the difference between cold-mix and hot-mix repair?',
         answer:
-          'Standard car parks use 30–40 mm wearing course over a prepared base. Heavy vehicle areas typically require 50–70 mm. We specify the correct depth based on expected axle loads.',
+          'Cold-mix is a pre-mixed product applied at ambient temperature. It is suitable for temporary and light-duty repairs. Hot-mix uses heated asphalt compacted in place and provides a permanent, durable repair for high-traffic areas.',
       },
       {
-        question: 'Do you supply the design or just lay the asphalt?',
+        question: 'How long does a pothole repair last?',
         answer:
-          'We provide a complete service: site survey, design, base preparation, asphalt laying, and compaction. We can also work from an engineer\'s specification.',
+          'A properly prepared and compacted hot-mix repair lasts 5 to 10 years or more. Cold-mix repairs are considered temporary and may need follow-up within 1 to 2 years.',
       },
       {
-        question: 'How long does a new asphalt surface last?',
+        question: 'Do you do emergency pothole repairs?',
         answer:
-          'A properly constructed and maintained asphalt surface lasts 15–25 years. Regular sealing every 3–5 years significantly extends its life.',
+          'Yes. We offer 24-hour emergency callouts for safety-critical pothole situations. An emergency surcharge applies.',
       },
       {
-        question: 'Can you surface around existing infrastructure?',
+        question: 'Can you repair a single pothole?',
         answer:
-          'Yes. We work around drains, kerbs, services, and fixed plant. Complex layouts are priced accordingly.',
+          'Yes, though our minimum call-out charge applies. For a single small pothole, it may be more economical to group repairs across your site.',
       },
     ],
   },
@@ -128,7 +128,7 @@ export const SERVICES: ServicePage[] = [
       {
         question: 'How long does line marking last?',
         answer:
-          'Road paint typically lasts 1–2 years under heavy traffic. Thermoplastic lasts 5–7 years. Both are affected by vehicle turning movements and UV exposure.',
+          'Road paint typically lasts 1 to 2 years under heavy traffic. Thermoplastic lasts 5 to 7 years. Both are affected by vehicle turning movements and UV exposure.',
       },
       {
         question: 'Do you mark disabled bays to SANS standards?',

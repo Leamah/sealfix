@@ -38,7 +38,7 @@ export const FAQS: FaqItem[] = [
     category: 'process',
     question: 'How long does a typical job take?',
     answer:
-      'Sealing a standard 1 000 m² car park takes 1–2 days including prep and curing. New asphalt surfacing of the same area takes 3–5 days. Line marking a fully marked 50-bay car park takes 4–8 hours.',
+      'Sealing a standard 1 000 m² car park takes 1 to 2 days including prep and curing. Pothole repairs on a typical yard can often be completed in a single day. Line marking a fully marked 50-bay car park takes 4 to 8 hours.',
   },
   {
     category: 'process',
@@ -61,18 +61,18 @@ export const FAQS: FaqItem[] = [
       'New asphalt should cure for 90 to 180 days before sealing. After curing, sealing is highly recommended: it closes the surface pores, prevents oxidation, and significantly extends pavement life.',
   },
 
-  // Surfacing
+  // Pothole Repair
   {
-    category: 'surfacing',
-    question: 'Can you repair only part of a parking lot?',
+    category: 'pothole',
+    question: 'Can you repair only the damaged sections of a parking lot?',
     answer:
-      'Yes. We can patch and overlay specific damaged sections. For widespread deterioration, full reconstruction is usually more cost-effective in the long run.',
+      'Yes. We patch specific potholes and damaged areas without disturbing the rest of the surface. For widespread deterioration, we will advise on whether patching or full re-sealing is more cost-effective.',
   },
   {
-    category: 'surfacing',
-    question: 'What base preparation is required for new asphalt?',
+    category: 'pothole',
+    question: 'How do I know if I need hot-mix or cold-mix repair?',
     answer:
-      'We require a compacted granular sub-base of adequate depth for the expected loading. We assess existing base conditions during the site visit and advise on any remediation needed.',
+      'For driveways and light-use areas, cold-mix is often sufficient for minor potholes. For commercial yards, parking areas with regular vehicle traffic, or any pothole larger than 200 mm, we recommend hot-mix for a lasting repair.',
   },
 
   // Line Marking

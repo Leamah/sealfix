@@ -5,9 +5,9 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Services | Sealing, Surfacing & Line Marking South Africa',
+  title: 'Services | Sealing, Pothole Repair & Line Marking South Africa',
   description:
-    'Specialist sealing, asphalt surfacing, and line marking services for commercial, industrial, and municipal clients across South Africa.',
+    'Specialist sealing, pothole repair, line marking, and signage services for residential, commercial, industrial, and municipal clients across South Africa.',
   path: '/services',
 });
 
@@ -16,15 +16,15 @@ const SERVICES = [
     href: '/services/sealing',
     title: 'Sealing',
     description:
-      'Professional seal coating for parking lots, yards, and roads. Extends asphalt life by up to 10 years using coal-tar-free sealers.',
+      'Professional seal coating for driveways, parking lots, yards, and roads. Extends asphalt life by up to 5 years using coal-tar-free sealers.',
     from: 'From R45/m²',
   },
   {
-    href: '/services/surfacing',
-    title: 'Surfacing',
+    href: '/services/pothole-repair',
+    title: 'Pothole Repair',
     description:
-      'New asphalt construction, overlay, and reconstruction for commercial roads, parking areas, and industrial yards. Full design-to-completion service.',
-    from: 'From R180/m²',
+      'Fast, durable pothole patching for residential driveways, parking areas, and commercial yards. Cold-mix and hot-mix options. Minimal disruption.',
+    from: 'From R350/pothole',
   },
   {
     href: '/services/line-marking',
@@ -43,8 +43,8 @@ export default function ServicesPage() {
           <Breadcrumbs items={[{ name: 'Services', path: '/services' }]} />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100">Our Services</h1>
           <p className="mt-3 max-w-2xl text-sand-300">
-            South African specialist contractor for commercial and industrial sealing, surfacing, and line marking.
-            Over 15 years experience. Serving all major provinces.
+            South African specialist contractor for residential and commercial sealing, pothole repair, and line marking.
+            Over 8 years experience. Serving 8 provinces.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {SERVICES.map((service) => (

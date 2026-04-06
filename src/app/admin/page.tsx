@@ -4,17 +4,15 @@ import { useState } from 'react';
 import type { ServiceMode } from '@/lib/pricing/types';
 import type { EffectiveRates, PrepLevels, TierMultipliers, TierThresholds } from '@/lib/pricing/rate-store';
 
-const MODES: ServiceMode[] = ['sealing', 'surfacing', 'line-marking', 'pothole', 'signage'];
+const MODES: ServiceMode[] = ['sealing', 'line-marking', 'pothole', 'signage'];
 const MODE_LABELS: Record<ServiceMode, string> = {
   sealing: 'Sealing',
-  surfacing: 'Surfacing',
   'line-marking': 'Line Marking',
   pothole: 'Pothole Repair',
   signage: 'Signage',
 };
 const MODE_UNITS: Record<ServiceMode, string> = {
   sealing: '/m²',
-  surfacing: '/m²',
   'line-marking': '/lm',
   pothole: '/each',
   signage: '/sign',

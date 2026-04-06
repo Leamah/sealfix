@@ -4,7 +4,7 @@ export interface ServicePage {
   shortTitle: string;
   description: string;
   heroImage: string;
-  calculatorMode: 'sealing' | 'surfacing' | 'line-marking' | 'pothole';
+  calculatorMode: 'sealing' | 'line-marking' | 'pothole' | 'signage';
   useCases: string[];
   pricingFactors: string[];
   faqs: Array<{ question: string; answer: string }>;

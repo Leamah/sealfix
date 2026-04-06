@@ -3,7 +3,7 @@ import { COMPANY } from '@/lib/content/company';
 
 const SERVICE_LINKS = [
   { href: '/services/sealing', label: 'Sealing' },
-  { href: '/services/surfacing', label: 'Surfacing' },
+  { href: '/services/pothole-repair', label: 'Pothole Repair' },
   { href: '/services/line-marking', label: 'Line Marking' },
   { href: '/pricing', label: 'Pricing Calculator' },
   { href: '/pricing/guide', label: 'Pricing Guide' },

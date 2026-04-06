@@ -5,21 +5,21 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Sealing & Surfacing Pricing Guide South Africa 2024',
+  title: 'Sealing, Pothole Repair & Line Marking Pricing Guide South Africa',
   description:
-    'Complete pricing guide for sealing, surfacing, and line marking in South Africa. Typical costs per m², what affects price, and how to budget your project.',
+    'Complete pricing guide for sealing, pothole repair, line marking, and signage in South Africa. Typical costs per unit, what affects price, and how to budget your project.',
   path: '/pricing/guide',
 });
 
 const PRICE_TABLE = [
-  { service: 'Sealing (economy)', unit: 'per m²', low: 'R38', high: 'R52', notes: 'Clean, good condition surface' },
-  { service: 'Sealing (standard)', unit: 'per m²', low: 'R45', high: 'R65', notes: 'Standard prep and sealer' },
-  { service: 'Sealing (premium)', unit: 'per m²', low: 'R55', high: 'R80', notes: 'Rubberised sealer, high-traffic' },
-  { service: 'Surfacing: Overlay', unit: 'per m²', low: 'R150', high: 'R250', notes: '30-40 mm wear course' },
-  { service: 'Surfacing: New Construction', unit: 'per m²', low: 'R200', high: 'R380', notes: 'Including base preparation' },
-  { service: 'Line marking (road paint)', unit: 'per lm', low: 'R18', high: 'R28', notes: 'Standard road paint' },
-  { service: 'Line marking (thermoplastic)', unit: 'per lm', low: 'R35', high: 'R55', notes: 'Heated thermoplastic' },
-  { service: 'Pothole repair', unit: 'per pothole', low: 'R280', high: 'R550', notes: 'Depending on size and depth' },
+  { service: 'Sealing (economy)',              unit: 'per m²',      low: 'R38',    high: 'R52',    notes: 'Clean, good condition surface' },
+  { service: 'Sealing (standard)',             unit: 'per m²',      low: 'R45',    high: 'R65',    notes: 'Standard prep and sealer' },
+  { service: 'Sealing (premium)',              unit: 'per m²',      low: 'R55',    high: 'R80',    notes: 'Rubberised sealer, high-traffic' },
+  { service: 'Pothole repair (small)',         unit: 'per pothole', low: 'R280',   high: 'R450',   notes: 'Up to 300 mm diameter' },
+  { service: 'Pothole repair (large)',         unit: 'per pothole', low: 'R450',   high: 'R900',   notes: 'Over 300 mm or deep excavation' },
+  { service: 'Line marking (road paint)',      unit: 'per lm',      low: 'R18',    high: 'R28',    notes: 'Standard road paint' },
+  { service: 'Line marking (thermoplastic)',   unit: 'per lm',      low: 'R35',    high: 'R55',    notes: 'Heated thermoplastic' },
+  { service: 'Signage (supply and install)',   unit: 'per sign',    low: 'R1 200', high: 'R2 500', notes: 'Standard road / parking signs' },
 ];
 
 export default function PricingGuidePage() {

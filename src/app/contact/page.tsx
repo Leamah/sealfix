@@ -7,7 +7,7 @@ import { COMPANY } from '@/lib/content/company';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact SealFix SA | Sealing & Surfacing Contractor',
   description:
-    'Get in touch with SealFix SA for sealing, surfacing, and line marking enquiries. Phone, email, or use the online quote calculator for an instant estimate.',
+    'Get in touch with SealFix SA for sealing, pothole repair, line marking, and signage enquiries. Phone, email, or use the online quote calculator for an instant estimate.',
   path: '/contact',
 });
 
