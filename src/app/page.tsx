@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { TrustBar } from '@/components/sections/TrustBar';
 import { ServiceCards } from '@/components/sections/ServiceCards';
-import { CalculatorShell } from '@/components/calculator/CalculatorShell';
+import { SimpleCalculatorShell } from '@/components/calculator/SimpleCalculatorShell';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
 export const metadata: Metadata = {
-  title: 'Sealing, Surfacing & Line Marking Contractors | Instant Price Estimate',
+  title: 'Sealing, Pothole Repair & Line Marking Contractors | Instant Price Estimate',
   description:
-    'South African specialist contractor for parking lot sealing, asphalt surfacing, and line marking. Get an instant cost estimate online. Serving Johannesburg, Cape Town, Durban, and all major cities.',
+    'South African specialist contractor for residential and commercial sealing, pothole repair, line marking, and signage. Instant online cost estimate. Serving Johannesburg, Cape Town, Durban, and all major cities.',
 };
 
 export default function HomePage() {
@@ -28,7 +28,7 @@ export default function HomePage() {
       />
       <TrustBar />
       <ServiceCards />
-      <CalculatorShell title="Get Your Instant Estimate" />
+      <SimpleCalculatorShell />
       <ProcessSteps />
       <Testimonials />
       <CtaBanner />

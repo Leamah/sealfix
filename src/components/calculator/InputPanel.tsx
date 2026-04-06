@@ -93,19 +93,6 @@ export function InputPanel({
         </select>
       </Field>
 
-      <Field label="Access difficulty">
-        <select
-          value={input.accessDifficulty}
-          onChange={(e) => onChange({ accessDifficulty: e.target.value as CalculatorInput['accessDifficulty'] })}
-          className={selectClass}
-        >
-          <option value="easy">Easy (open site)</option>
-          <option value="moderate">Moderate (some restrictions)</option>
-          <option value="restricted">Restricted (confined access)</option>
-          <option value="crane">Crane / special lift required</option>
-        </select>
-      </Field>
-
       <Field label="Surface preparation">
         <select
           value={input.prepLevel}
