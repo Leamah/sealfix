@@ -23,7 +23,6 @@ function buildDefaultInput(mode: ServiceMode, region?: string): CalculatorInput 
     mode,
     quantity: mode === 'signage' ? 5 : mode === 'pothole' ? 3 : 500,
     unit: UNIT_FOR_MODE[mode],
-    jobSizeTier: 'medium',
     region: region ?? 'johannesburg',
     urgency: 'standard',
     accessDifficulty: 'easy',

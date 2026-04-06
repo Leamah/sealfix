@@ -1,4 +1,4 @@
-import type { ServiceMode } from './types';
+import type { ServiceMode, MeasurementUnit } from './types';
 
 // Base rates in ZAR per unit (sqm or linear metre or each)
 export const BASE_RATES: Record<ServiceMode, number> = {
@@ -9,13 +9,20 @@ export const BASE_RATES: Record<ServiceMode, number> = {
   signage: 1800,
 };
 
-// Job size tier multipliers — larger jobs get volume discounts
+// Job size tier multipliers (volume discounts — auto-applied based on quantity)
 export const JOB_SIZE_MULTIPLIERS = {
-  small: 1.25,   // <200 sqm / <100 lm
-  medium: 1.00,  // 200–1000 sqm / 100–500 lm
-  large: 0.90,   // 1000–5000 sqm / 500–2000 lm
-  major: 0.80,   // >5000 sqm / >2000 lm
+  small: 1.25,
+  medium: 1.00,
+  large: 0.90,
+  major: 0.80,
 } as const;
+
+// Thresholds for auto-calculating job size tier from quantity
+export const JOB_SIZE_THRESHOLDS: Record<MeasurementUnit, { small: number; medium: number; large: number }> = {
+  sqm:              { small: 200,  medium: 1000, large: 5000 },
+  'linear-meters':  { small: 100,  medium: 500,  large: 2000 },
+  each:             { small: 5,    medium: 20,   large: 50   },
+};
 
 // Regional logistics and cost-of-living adjustments
 export const REGION_MULTIPLIERS: Record<string, number> = {

@@ -6,7 +6,7 @@ export const SERVICES: ServicePage[] = [
     title: 'Asphalt & Pavement Sealing',
     shortTitle: 'Sealing',
     description:
-      'Professional sealing for parking lots, driveways, warehouse yards, and industrial surfaces. Extends pavement life by up to 10 years.',
+      'Professional sealing for driveways, parking lots, warehouse yards, and industrial surfaces. Extends asphalt life by up to 5 years.',
     heroImage: '/images/hero-sealing.jpg',
     calculatorMode: 'sealing',
     useCases: [

@@ -1,24 +1,20 @@
 import type { CalculatorInput, CalculatorResult, CalculatorLineItem } from './types';
 import {
-  BASE_RATES,
-  JOB_SIZE_MULTIPLIERS,
   REGION_MULTIPLIERS,
   URGENCY_MULTIPLIERS,
   ACCESS_MULTIPLIERS,
-  PREP_RATES,
   SERVICE_TIER_MULTIPLIERS,
-  OVERHEAD_PERCENTAGE,
-  CONTINGENCY_PERCENTAGE,
   VAT_RATE,
   MINIMUM_CHARGE,
 } from './rates';
+import { getEffectiveRates, calcJobSizeTier } from './rate-store';
 import { formatZAR } from '@/lib/utils';
 
 export function calculate(input: CalculatorInput): CalculatorResult {
   const {
     mode,
     quantity,
-    jobSizeTier,
+    unit,
     region,
     urgency,
     accessDifficulty,
@@ -26,26 +22,28 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     serviceTier,
   } = input;
 
+  const rates = getEffectiveRates();
   const lines: CalculatorLineItem[] = [];
 
   // 1. Base amount
-  const baseRate = BASE_RATES[mode];
+  const baseRate = rates.baseRates[mode];
   const baseAmount = baseRate * quantity;
   lines.push({
     label: 'Base rate',
     value: baseAmount,
-    note: `${formatZAR(baseRate)} × ${quantity.toLocaleString('en-ZA')} units`,
+    note: `${formatZAR(baseRate)} x ${quantity.toLocaleString('en-ZA')} units`,
   });
 
-  // 2. Job size tier adjustment
-  const sizeMultiplier = JOB_SIZE_MULTIPLIERS[jobSizeTier];
+  // 2. Job size tier (auto-calculated from quantity)
+  const jobSizeTier = calcJobSizeTier(unit, quantity);
+  const sizeMultiplier = rates.jobSizeMultipliers[jobSizeTier];
   const sizeAdjusted = baseAmount * sizeMultiplier;
   const tierAdjustment = sizeAdjusted - baseAmount;
   if (tierAdjustment !== 0) {
     lines.push({
       label: 'Job size adjustment',
       value: tierAdjustment,
-      note: `${jobSizeTier} tier (×${sizeMultiplier})`,
+      note: `${jobSizeTier} job (x${sizeMultiplier})`,
     });
   }
 
@@ -57,7 +55,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     lines.push({
       label: 'Regional adjustment',
       value: regionAdjustment,
-      note: `${region} region (×${regionMultiplier})`,
+      note: `${region} (x${regionMultiplier})`,
     });
   }
 
@@ -69,12 +67,12 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     lines.push({
       label: 'Service tier',
       value: serviceTierAdjustment,
-      note: `${serviceTier} (×${tierMultiplier})`,
+      note: `${serviceTier} (x${tierMultiplier})`,
     });
   }
 
-  // 5. Prep cost
-  const prepRate = PREP_RATES[mode][prepLevel];
+  // 5. Surface preparation
+  const prepRate = rates.prepRates[mode][prepLevel];
   const prepCost = prepRate * quantity;
   lines.push({
     label: 'Surface preparation',
@@ -82,7 +80,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     note: `${prepLevel} prep at ${formatZAR(prepRate)}/unit`,
   });
 
-  // 6. Access adjustment
+  // 6. Access surcharge
   const accessMultiplier = ACCESS_MULTIPLIERS[accessDifficulty];
   const accessAdjustment = tierAdjusted * (accessMultiplier - 1);
   if (accessAdjustment > 0) {
@@ -93,7 +91,7 @@ export function calculate(input: CalculatorInput): CalculatorResult {
     });
   }
 
-  // 7. Urgency adjustment
+  // 7. Urgency surcharge
   const urgencyMultiplier = URGENCY_MULTIPLIERS[urgency];
   const urgencyAdjustment = tierAdjusted * (urgencyMultiplier - 1);
   if (urgencyAdjustment > 0) {
@@ -107,19 +105,19 @@ export function calculate(input: CalculatorInput): CalculatorResult {
   const materialTotal = tierAdjusted + prepCost + accessAdjustment + urgencyAdjustment;
 
   // 8. Overhead
-  const overhead = materialTotal * OVERHEAD_PERCENTAGE;
+  const overhead = materialTotal * rates.overheadPct;
   lines.push({
     label: 'Overhead & management',
     value: overhead,
-    note: `${(OVERHEAD_PERCENTAGE * 100).toFixed(0)}%`,
+    note: `${(rates.overheadPct * 100).toFixed(0)}%`,
   });
 
   // 9. Contingency
-  const contingency = materialTotal * CONTINGENCY_PERCENTAGE;
+  const contingency = materialTotal * rates.contingencyPct;
   lines.push({
     label: 'Contingency',
     value: contingency,
-    note: `${(CONTINGENCY_PERCENTAGE * 100).toFixed(0)}%`,
+    note: `${(rates.contingencyPct * 100).toFixed(0)}%`,
   });
 
   // 10. Subtotal (enforce minimum)

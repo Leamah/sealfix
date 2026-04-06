@@ -2,7 +2,7 @@ export const COMPANY = {
   name: 'SealFix SA',
   legalName: 'SealFix SA (Pty) Ltd',
   description:
-    'South African specialist contractor for sealing, surfacing, line marking, and signage. Serving commercial, industrial, and municipal clients across 8 provinces.',
+    'South African specialist contractor for sealing, surfacing, line marking, and signage. Serving residential, commercial, industrial, and municipal clients across 8 provinces.',
   phone: '+27 11 000 0000',
   supportPhone: '+27 11 000 0000',
   email: 'sealfix@leamah.co.za',

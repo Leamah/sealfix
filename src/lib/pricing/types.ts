@@ -5,7 +5,6 @@ export interface CalculatorInput {
   mode: ServiceMode;
   quantity: number;
   unit: MeasurementUnit;
-  jobSizeTier: 'small' | 'medium' | 'large' | 'major';
   region: string;
   urgency: 'standard' | 'expedited' | 'emergency';
   accessDifficulty: 'easy' | 'moderate' | 'restricted' | 'crane';

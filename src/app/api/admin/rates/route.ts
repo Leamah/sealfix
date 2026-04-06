@@ -1,41 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { BASE_RATES } from '@/lib/pricing/rates';
-import type { ServiceMode } from '@/lib/pricing/types';
-
-// In-process cache — lasts for the lifetime of the serverless function instance.
-// For persistent overrides, set RATE_OVERRIDE_* env vars (see .env.local.example).
-// Re-deploy after changing env vars to apply them globally.
-let runtimeOverrides: Partial<Record<ServiceMode, number>> = {};
-
-function getRates(): Record<ServiceMode, number> {
-  const rates = { ...BASE_RATES };
-  const modes: ServiceMode[] = ['sealing', 'surfacing', 'line-marking', 'pothole', 'signage'];
-  for (const mode of modes) {
-    const envKey = `RATE_OVERRIDE_${mode.toUpperCase().replace('-', '_')}`;
-    const envVal = process.env[envKey];
-    if (envVal) {
-      const parsed = parseFloat(envVal);
-      if (!isNaN(parsed)) rates[mode] = parsed;
-    }
-    if (runtimeOverrides[mode] !== undefined) {
-      rates[mode] = runtimeOverrides[mode]!;
-    }
-  }
-  return rates;
-}
+import { getEffectiveRates, getRateOverrides, setRateOverrides } from '@/lib/pricing/rate-store';
+import type { EffectiveRates } from '@/lib/pricing/rate-store';
 
 function checkAuth(request: NextRequest): boolean {
   const adminPassword = process.env.ADMIN_PASSWORD;
-  if (!adminPassword) return false; // must set ADMIN_PASSWORD env var
-  const authHeader = request.headers.get('x-admin-password');
-  return authHeader === adminPassword;
+  if (!adminPassword) return false;
+  return request.headers.get('x-admin-password') === adminPassword;
 }
 
 export async function GET(request: NextRequest) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  return NextResponse.json({ rates: getRates(), runtimeOverrides });
+  return NextResponse.json({
+    effective: getEffectiveRates(),
+    overrides: getRateOverrides(),
+  });
 }
 
 export async function POST(request: NextRequest) {
@@ -43,20 +23,53 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await request.json().catch(() => null);
-  if (!body || typeof body.rates !== 'object') {
+  const body: Partial<EffectiveRates> = await request.json().catch(() => null);
+  if (!body) {
     return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
   }
 
-  const modes: ServiceMode[] = ['sealing', 'surfacing', 'line-marking', 'pothole', 'signage'];
-  for (const mode of modes) {
-    if (body.rates[mode] !== undefined) {
-      const val = parseFloat(body.rates[mode]);
-      if (!isNaN(val) && val > 0) {
-        runtimeOverrides[mode] = val;
-      }
+  // Merge incoming payload with existing overrides
+  const existing = getRateOverrides();
+
+  const next: Partial<EffectiveRates> = { ...existing };
+
+  if (body.baseRates) {
+    next.baseRates = { ...(existing.baseRates ?? {}), ...body.baseRates } as EffectiveRates['baseRates'];
+  }
+  if (body.prepRates) {
+    const merged = { ...(existing.prepRates ?? {}) };
+    for (const [mode, levels] of Object.entries(body.prepRates)) {
+      merged[mode as keyof typeof merged] = {
+        ...((existing.prepRates as Record<string, unknown> | undefined)?.[mode] as object ?? {}),
+        ...levels,
+      } as EffectiveRates['prepRates'][keyof EffectiveRates['prepRates']];
     }
+    next.prepRates = merged as EffectiveRates['prepRates'];
+  }
+  if (typeof body.overheadPct === 'number' && body.overheadPct > 0) {
+    next.overheadPct = body.overheadPct;
+  }
+  if (typeof body.contingencyPct === 'number' && body.contingencyPct >= 0) {
+    next.contingencyPct = body.contingencyPct;
+  }
+  if (body.jobSizeMultipliers) {
+    next.jobSizeMultipliers = {
+      ...(existing.jobSizeMultipliers ?? {}),
+      ...body.jobSizeMultipliers,
+    } as EffectiveRates['jobSizeMultipliers'];
+  }
+  if (body.jobSizeThresholds) {
+    const merged = { ...(existing.jobSizeThresholds ?? {}) };
+    for (const [unit, thresholds] of Object.entries(body.jobSizeThresholds)) {
+      merged[unit as keyof typeof merged] = {
+        ...((existing.jobSizeThresholds as Record<string, unknown> | undefined)?.[unit] as object ?? {}),
+        ...thresholds,
+      } as EffectiveRates['jobSizeThresholds'][keyof EffectiveRates['jobSizeThresholds']];
+    }
+    next.jobSizeThresholds = merged as EffectiveRates['jobSizeThresholds'];
   }
 
-  return NextResponse.json({ success: true, rates: getRates() });
+  setRateOverrides(next);
+
+  return NextResponse.json({ success: true, effective: getEffectiveRates() });
 }

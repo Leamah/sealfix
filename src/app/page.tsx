@@ -18,7 +18,7 @@ export default function HomePage() {
     <>
       <HeroSection
         title="Sealing. Surfacing. Line Marking."
-        subtitle="South Africa's specialist commercial contractor. Get an instant cost estimate for your parking lot, warehouse yard, or road. No call required."
+        subtitle="South Africa's specialist residential and commercial contractor. Get an instant cost estimate for your driveway, parking lot, warehouse yard, or road. No call required."
         ctaLabel="Get Free Estimate"
         ctaHref="#calculator"
         secondaryCtaLabel="Call Us Now"

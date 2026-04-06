@@ -9,7 +9,7 @@ import { COMPANY } from '@/lib/content/company';
 export const metadata: Metadata = buildMetadata({
   title: 'About SealFix SA | South African Sealing & Surfacing Specialist',
   description:
-    'Over 8 years of specialist sealing, surfacing, and line marking across South Africa. Commercial and industrial contractor serving 8 provinces.',
+    'Over 8 years of specialist sealing, surfacing, and line marking across South Africa. Serving residential, commercial, industrial, and municipal clients across 8 provinces.',
   path: '/about',
 });
 

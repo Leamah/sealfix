@@ -27,8 +27,8 @@ export function Testimonials() {
               key={t.name}
               className="flex flex-col rounded border border-charcoal-700 bg-charcoal-900 p-6"
             >
-              <p className="flex-1 text-sm leading-relaxed text-sand-300 before:content-['\u201c'] after:content-['\u201d']">
-                {t.quote}
+              <p className="flex-1 text-sm leading-relaxed text-sand-300">
+                &ldquo;{t.quote}&rdquo;
               </p>
               <footer className="mt-4 border-t border-charcoal-700 pt-4">
                 <p className="text-sm font-semibold text-sand-100">{t.name}</p>

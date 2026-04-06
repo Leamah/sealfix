@@ -5,7 +5,6 @@ import { Label } from '@/components/ui/label';
 interface InputPanelProps {
   input: CalculatorInput;
   onChange: (updates: Partial<CalculatorInput>) => void;
-  /** Additional per-mode quantities when running a combination quote */
   extraModes?: ServiceMode[];
   extraQuantities?: Partial<Record<ServiceMode, number>>;
   onExtraQuantityChange?: (mode: ServiceMode, qty: number) => void;
@@ -52,7 +51,6 @@ export function InputPanel({
         />
       </Field>
 
-      {/* Extra mode quantities for combination quotes */}
       {extraModes.map((mode) => (
         <Field key={mode} label={UNIT_LABELS[mode]}>
           <input
@@ -68,19 +66,6 @@ export function InputPanel({
           />
         </Field>
       ))}
-
-      <Field label="Job size">
-        <select
-          value={input.jobSizeTier}
-          onChange={(e) => onChange({ jobSizeTier: e.target.value as CalculatorInput['jobSizeTier'] })}
-          className={selectClass}
-        >
-          <option value="small">Small (under 200 units)</option>
-          <option value="medium">Medium (200 to 1 000)</option>
-          <option value="large">Large (1 000 to 5 000)</option>
-          <option value="major">Major (over 5 000)</option>
-        </select>
-      </Field>
 
       <Field label="Region">
         <select
