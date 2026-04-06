@@ -19,7 +19,9 @@ const PRICE_TABLE = [
   { service: 'Pothole repair (large)',         unit: 'per pothole', low: 'R450',   high: 'R900',   notes: 'Over 300 mm or deep excavation' },
   { service: 'Line marking (road paint)',      unit: 'per lm',      low: 'R18',    high: 'R28',    notes: 'Standard road paint' },
   { service: 'Line marking (thermoplastic)',   unit: 'per lm',      low: 'R35',    high: 'R55',    notes: 'Heated thermoplastic' },
-  { service: 'Signage (supply and install)',   unit: 'per sign',    low: 'R1 200', high: 'R2 500', notes: 'Standard road / parking signs' },
+  { service: 'Sign erection (supply & install)',  unit: 'per sign',   low: 'R2 300', high: 'R4 500', notes: 'Road / parking sign on post' },
+  { service: 'Painted symbols (road paint)',       unit: 'per symbol', low: 'R520',   high: 'R900',   notes: 'Disabled bay, arrows, lettering' },
+  { service: 'Painted symbols (thermoplastic)',    unit: 'per symbol', low: 'R900',   high: 'R1 600', notes: 'Durable heated application' },
 ];
 
 export default function PricingGuidePage() {

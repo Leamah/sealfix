@@ -33,6 +33,20 @@ const SERVICES = [
       'Durable parking bay marking, road markings, and safety lines. Thermoplastic and road-paint options. SANS 10400-S compliant disabled bays.',
     from: 'From R22/lm',
   },
+  {
+    href: '/services/signage-physical',
+    title: 'Sign Erection',
+    description:
+      'Supply and erection of road signs, speed limit signs, parking signs, and directional signs. Compliant with SANS 1519 and SARTSM.',
+    from: 'From R2 800/sign',
+  },
+  {
+    href: '/services/signage-painted',
+    title: 'Painted Signage',
+    description:
+      'Disabled bay symbols, arrows, STOP lettering, and speed numbers painted onto asphalt or concrete. SANS 10400-S compliant.',
+    from: 'From R650/symbol',
+  },
 ];
 
 export default function ServicesPage() {

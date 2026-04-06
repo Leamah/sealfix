@@ -5,8 +5,9 @@ const SERVICE_LINKS = [
   { href: '/services/sealing', label: 'Sealing' },
   { href: '/services/pothole-repair', label: 'Pothole Repair' },
   { href: '/services/line-marking', label: 'Line Marking' },
+  { href: '/services/signage-physical', label: 'Sign Erection' },
+  { href: '/services/signage-painted', label: 'Painted Signage' },
   { href: '/pricing', label: 'Pricing Calculator' },
-  { href: '/pricing/guide', label: 'Pricing Guide' },
 ];
 
 const COMPANY_LINKS = [

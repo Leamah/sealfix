@@ -14,18 +14,20 @@ const Calculator = dynamic(() => import('@/components/calculator/Calculator').th
   ),
 });
 
-const MODES: ServiceMode[] = ['sealing', 'line-marking', 'pothole', 'signage'];
+const MODES: ServiceMode[] = ['sealing', 'line-marking', 'pothole', 'signage-physical', 'signage-painted'];
 const MODE_LABELS: Record<ServiceMode, string> = {
   sealing: 'Sealing',
   'line-marking': 'Line Marking',
   pothole: 'Pothole Repair',
-  signage: 'Signage',
+  'signage-physical': 'Sign Erection (Physical)',
+  'signage-painted': 'Painted Signage',
 };
 const MODE_UNITS: Record<ServiceMode, string> = {
   sealing: '/m²',
   'line-marking': '/lm',
   pothole: '/each',
-  signage: '/sign',
+  'signage-physical': '/sign',
+  'signage-painted': '/symbol',
 };
 const PREP_LEVELS: (keyof PrepLevels)[] = ['light', 'medium', 'heavy', 'demolition'];
 const TIER_KEYS: (keyof TierMultipliers)[] = ['small', 'medium', 'large', 'major'];

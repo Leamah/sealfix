@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import type { CalculatorInput, ServiceMode, CalculatorResult } from '@/lib/pricing/types';
-import { calculate } from '@/lib/pricing/calculator';
+import { calculate, calculateHigh, isAtHighEnd } from '@/lib/pricing/calculator';
 import { ModeSelector } from './ModeSelector';
 import { InputPanel } from './InputPanel';
 import { ResultsPanel } from './ResultsPanel';
@@ -14,18 +14,18 @@ const UNIT_FOR_MODE: Record<ServiceMode, CalculatorInput['unit']> = {
   sealing: 'sqm',
   'line-marking': 'linear-meters',
   pothole: 'each',
-  signage: 'each',
+  'signage-physical': 'each',
+  'signage-painted': 'each',
 };
 
 function buildDefaultInput(mode: ServiceMode, region?: string): CalculatorInput {
   return {
     mode,
-    quantity: mode === 'signage' ? 5 : mode === 'pothole' ? 3 : 500,
+    quantity: mode === 'signage-physical' || mode === 'signage-painted' ? 5 : mode === 'pothole' ? 3 : 500,
     unit: UNIT_FOR_MODE[mode],
     region: region ?? 'johannesburg',
     urgency: 'standard',
     prepLevel: 'light',
-    serviceTier: 'standard',
   };
 }
 
@@ -37,15 +37,8 @@ interface CalculatorProps {
 export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
   const firstMode = initialMode ?? 'sealing';
   const [selectedModes, setSelectedModes] = useState<ServiceMode[]>([firstMode]);
-
-  // Shared base input (region, urgency, access, prep, tier) keyed to first mode
-  const [baseInput, setBaseInput] = useState<CalculatorInput>(
-    buildDefaultInput(firstMode, initialRegion)
-  );
-
-  // Per-mode quantities (primary mode uses baseInput.quantity)
+  const [baseInput, setBaseInput] = useState<CalculatorInput>(buildDefaultInput(firstMode, initialRegion));
   const [extraQuantities, setExtraQuantities] = useState<Partial<Record<ServiceMode, number>>>({});
-
   const [accepted, setAccepted] = useState(false);
   const [showLead, setShowLead] = useState(false);
 
@@ -54,14 +47,13 @@ export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
 
   function handleModesChange(modes: ServiceMode[]) {
     setSelectedModes(modes);
-    // Reset primary input mode if primary changed
     const newPrimary = modes[0];
     if (newPrimary !== primaryMode) {
       setBaseInput((prev) => ({
         ...prev,
         mode: newPrimary,
         unit: UNIT_FOR_MODE[newPrimary],
-        quantity: newPrimary === 'signage' ? 5 : newPrimary === 'pothole' ? 3 : prev.quantity,
+        quantity: newPrimary === 'signage-physical' || newPrimary === 'signage-painted' ? 5 : newPrimary === 'pothole' ? 3 : prev.quantity,
       }));
     }
     setAccepted(false);
@@ -72,8 +64,7 @@ export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
     setExtraQuantities((prev) => ({ ...prev, [mode]: qty }));
   }
 
-  // Calculate for each selected mode
-  const perModeResults = useMemo<Array<{ mode: ServiceMode; result: CalculatorResult }>>(() => {
+  const perModeResults = useMemo<Array<{ mode: ServiceMode; result: CalculatorResult; highResult: CalculatorResult }>>(() => {
     return selectedModes.map((mode) => {
       const input: CalculatorInput = {
         ...baseInput,
@@ -82,18 +73,20 @@ export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
         quantity:
           mode === primaryMode
             ? baseInput.quantity
-            : (extraQuantities[mode] ?? (mode === 'signage' ? 5 : mode === 'pothole' ? 3 : 100)),
+            : (extraQuantities[mode] ?? (mode === 'signage-physical' || mode === 'signage-painted' ? 5 : mode === 'pothole' ? 3 : 100)),
       };
-      return { mode, result: calculate(input) };
+      return { mode, result: calculate(input), highResult: calculateHigh(input) };
     });
   }, [selectedModes, baseInput, extraQuantities, primaryMode]);
 
   const combinedTotal = perModeResults.reduce((sum, r) => sum + r.result.total, 0);
   const combinedSubtotal = perModeResults.reduce((sum, r) => sum + r.result.subtotal, 0);
+  const combinedHighTotal = perModeResults.reduce((sum, r) => sum + r.highResult.total, 0);
 
-  // For single-mode, show the full breakdown; for multi-mode, show per-service summary
   const primaryResult = perModeResults[0].result;
+  const primaryHighResult = perModeResults[0].highResult;
   const isCombo = selectedModes.length > 1;
+  const primaryAtMax = isAtHighEnd(baseInput);
 
   return (
     <div className="space-y-6">
@@ -128,11 +121,10 @@ export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
           )}
         </div>
 
-        {/* Results */}
         <div className="space-y-4">
           {isCombo ? (
             <>
-              {perModeResults.map(({ mode, result }) => (
+              {perModeResults.map(({ mode, result, highResult }) => (
                 <div key={mode} className="rounded border border-charcoal-700 bg-charcoal-800 p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-sand-400 mb-2">
                     {mode.replace('-', ' ')}
@@ -147,14 +139,22 @@ export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
                   </div>
                   <div className="flex justify-between text-sm font-bold mt-2 pt-2 border-t border-charcoal-700">
                     <span className="text-sand-100">Total</span>
-                    <span className="text-ember-400">{formatZAR(result.total)}</span>
+                    <span className="text-ember-400">
+                      {primaryAtMax || highResult.total <= result.total
+                        ? formatZAR(result.total)
+                        : `${formatZAR(result.total)} – ${formatZAR(highResult.total)}`}
+                    </span>
                   </div>
                 </div>
               ))}
               <div className="rounded border border-ember-500 bg-ember-600/10 p-4">
                 <div className="flex justify-between font-bold text-base">
                   <span className="text-sand-100">Combined Total (incl. VAT)</span>
-                  <span className="text-ember-400">{formatZAR(combinedTotal)}</span>
+                  <span className="text-ember-400">
+                    {primaryAtMax || combinedHighTotal <= combinedTotal
+                      ? formatZAR(combinedTotal)
+                      : `${formatZAR(combinedTotal)} – ${formatZAR(combinedHighTotal)}`}
+                  </span>
                 </div>
                 <p className="mt-1 text-xs text-sand-400 italic">
                   Combined estimate across {selectedModes.length} services. Subject to on-site inspection.
@@ -162,7 +162,10 @@ export function Calculator({ initialMode, initialRegion }: CalculatorProps) {
               </div>
             </>
           ) : (
-            <ResultsPanel result={primaryResult} />
+            <ResultsPanel
+              result={primaryResult}
+              highResult={primaryAtMax ? undefined : primaryHighResult}
+            />
           )}
         </div>
       </div>

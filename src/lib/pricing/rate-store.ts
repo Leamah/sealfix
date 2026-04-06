@@ -55,7 +55,7 @@ export function getRateOverrides(): Partial<EffectiveRates> {
 }
 
 export function getEffectiveRates(): EffectiveRates {
-  const MODES: ServiceMode[] = ['sealing', 'line-marking', 'pothole', 'signage'];
+  const MODES: ServiceMode[] = ['sealing', 'line-marking', 'pothole', 'signage-physical', 'signage-painted'];
 
   const baseRates = { ...BASE_RATES, ..._overrides.baseRates };
 

@@ -22,6 +22,20 @@ const SERVICES = [
     icon: '📐',
     cta: 'Marking prices',
   },
+  {
+    title: 'Sign Erection',
+    href: '/services/signage-physical',
+    description: 'Supply and erection of road signs, speed limit signs, parking signs, and directional signage for estates and commercial sites.',
+    icon: '🚦',
+    cta: 'Signage prices',
+  },
+  {
+    title: 'Painted Signage',
+    href: '/services/signage-painted',
+    description: 'Disabled bay symbols, arrows, STOP lettering, and speed numbers painted on asphalt or concrete. SANS 10400-S compliant.',
+    icon: '♿',
+    cta: 'Symbol prices',
+  },
 ];
 
 export function ServiceCards() {
@@ -30,7 +44,7 @@ export function ServiceCards() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="font-display text-3xl font-bold uppercase text-sand-100">Our Services</h2>
         <p className="mt-2 text-sand-400">South African residential and commercial specialist</p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
             <div
               key={service.href}
