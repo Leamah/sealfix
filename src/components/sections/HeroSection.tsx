@@ -18,7 +18,7 @@ export function HeroSection({
   ctaLabel = 'Get Free Estimate',
   ctaHref = '/pricing',
   secondaryCtaLabel = 'Call Us Now',
-  secondaryCtaHref = 'tel:+27110000000',
+  secondaryCtaHref = 'tel:+27218913999',
   imageSrc,
   imageAlt = 'SealFix team on site',
 }: HeroSectionProps) {
