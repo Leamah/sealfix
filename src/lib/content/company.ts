@@ -4,7 +4,7 @@ export const COMPANY = {
   description:
     'South African specialist contractor for sealing, pothole repair, line marking, and signage. Serving residential, commercial, industrial, and municipal clients across 8 provinces.',
   phone: '+27 21 891 3999',
-  supportPhone: '+27 21 891 3999',
+  supportPhone: '+27 70 322 444',
   email: 'sealfix@leamah.co.za',
   address: {
     streetAddress: '123 Industrial Road',
