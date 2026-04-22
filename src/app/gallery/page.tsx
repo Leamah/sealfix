@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { buildMetadata } from '@/lib/metadata';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { CtaBanner } from '@/components/sections/CtaBanner';
@@ -10,6 +11,37 @@ export const metadata: Metadata = buildMetadata({
   path: '/gallery',
 });
 
+const PROJECTS = [
+  {
+    src: '/projects/project-collage.png',
+    alt: 'Completed sealing, surfacing and line marking projects',
+    caption: 'Recent completed works — surfacing, pothole repair and line marking',
+    aspect: 'aspect-[4/3]',
+    span: 'sm:col-span-2 lg:col-span-3',
+  },
+  {
+    src: '/projects/surfacing-driveway.jpg',
+    alt: 'Freshly surfaced commercial driveway and access road',
+    caption: 'Commercial access road — full surfacing',
+    aspect: 'aspect-video',
+    span: '',
+  },
+  {
+    src: '/projects/pothole-repair-picknpay.jpg',
+    alt: 'Pothole repair completed on main road outside Pick n Pay',
+    caption: 'Pothole repair — retail precinct main road',
+    aspect: 'aspect-video',
+    span: '',
+  },
+  {
+    src: '/projects/line-marking-crew.jpg',
+    alt: 'SealFix crew painting pedestrian crossing line markings',
+    caption: 'Pedestrian crossing — line marking crew on site',
+    aspect: 'aspect-video',
+    span: '',
+  },
+];
+
 export default function GalleryPage() {
   return (
     <>
@@ -19,16 +51,24 @@ export default function GalleryPage() {
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100">Project Gallery</h1>
           <p className="mt-3 text-sand-300">
             A selection of completed sealing, pothole repair, and line marking projects across South Africa.
-            Photography and full case studies coming soon.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="aspect-video rounded border border-charcoal-700 bg-charcoal-800 flex items-center justify-center"
+            {PROJECTS.map((p) => (
+              <figure
+                key={p.src}
+                className={`${p.span} overflow-hidden rounded border border-charcoal-700 bg-charcoal-800`}
               >
-                <span className="text-xs text-sand-400">Project photo (coming soon)</span>
-              </div>
+                <div className={`relative ${p.aspect} w-full`}>
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
+                <figcaption className="px-3 py-2 text-xs text-sand-400">{p.caption}</figcaption>
+              </figure>
             ))}
           </div>
         </div>
