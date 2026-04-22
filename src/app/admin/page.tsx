@@ -371,13 +371,38 @@ export default function AdminPage() {
         )}
 
         {/* Permanent changes note */}
-        <div className="rounded border border-charcoal-700 bg-charcoal-800 p-5 text-xs text-sand-400">
-          <p className="font-semibold text-sand-300 mb-1">Making changes permanent</p>
+        <div className="rounded border border-ember-500/40 bg-charcoal-800 p-5 text-xs text-sand-300 space-y-3">
+          <p className="font-semibold text-ember-400 text-sm">⚠ Changes here are temporary</p>
           <p>
-            Changes above apply to the current server instance only and are lost on redeploy.
-            To persist them, copy the values you set into Vercel environment variables
-            (Project Settings &gt; Environment Variables) and redeploy.
-            Contact your developer to automate this with a database if needed.
+            The inputs above update the current server instance only. Vercel runs serverless, so
+            these values are lost on the next deploy or when a new instance spins up. Use the Live
+            Tester to preview rate changes, then copy the final numbers into Vercel environment
+            variables below for them to stick.
+          </p>
+
+          <div>
+            <p className="font-semibold text-sand-200 mt-2 mb-1">How to make base rates permanent:</p>
+            <ol className="list-decimal pl-5 space-y-1">
+              <li>Go to <span className="text-sand-100">Vercel → Project Settings → Environment Variables</span></li>
+              <li>Add the keys below with your chosen values</li>
+              <li>Trigger a redeploy (push any commit, or use the Redeploy button)</li>
+            </ol>
+          </div>
+
+          <div className="rounded bg-charcoal-900 p-3 font-mono text-[11px] text-sand-200 leading-relaxed overflow-x-auto">
+            <div>RATE_OVERRIDE_BASE_SEALING={effective.baseRates.sealing}</div>
+            <div>RATE_OVERRIDE_BASE_LINE_MARKING={effective.baseRates['line-marking']}</div>
+            <div>RATE_OVERRIDE_BASE_POTHOLE={effective.baseRates.pothole}</div>
+            <div>RATE_OVERRIDE_BASE_SIGNAGE_PHYSICAL={effective.baseRates['signage-physical']}</div>
+            <div>RATE_OVERRIDE_BASE_SIGNAGE_PAINTED={effective.baseRates['signage-painted']}</div>
+            <div>RATE_OVERRIDE_OVERHEAD_PCT={effective.overheadPct.toFixed(3)}</div>
+            <div>RATE_OVERRIDE_CONTINGENCY_PCT={effective.contingencyPct.toFixed(3)}</div>
+          </div>
+
+          <p className="text-sand-400">
+            Any env var that is set takes precedence over the hard-coded default. You don&apos;t have
+            to set all of them — only the ones you want to change. Prep rates, job-size tiers, and
+            thresholds still require a code change to persist (ask your developer).
           </p>
         </div>
       </div>

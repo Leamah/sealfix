@@ -22,7 +22,7 @@ export default function HomePage() {
         ctaLabel="Get Free Estimate"
         ctaHref="#calculator"
         secondaryCtaLabel="Call Us Now"
-        secondaryCtaHref="tel:+27110000000"
+        secondaryCtaHref="tel:+27218913999"
         imageSrc="/62384ee6-dedb-49ec-9dff-00162b92e28a.png"
         imageAlt="SealFix team working on a road surfacing project"
       />
