@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { COMPANY } from '@/lib/content/company';
 
 const SERVICE_LINKS = [
@@ -33,10 +34,14 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company info */}
           <div>
-            <p className="font-display text-lg font-bold uppercase tracking-wider text-sand-100">
-              {COMPANY.name}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed">{COMPANY.description}</p>
+            <Image
+              src={COMPANY.logo}
+              alt={`${COMPANY.name} logo`}
+              width={2239}
+              height={2064}
+              className="h-14 w-auto"
+            />
+            <p className="mt-3 text-sm leading-relaxed">{COMPANY.description}</p>
             <div className="mt-4 space-y-1 text-sm">
               <a href={`tel:${COMPANY.phone}`} className="block hover:text-ember-400 transition-colors">
                 {COMPANY.phone}

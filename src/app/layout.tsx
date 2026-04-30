@@ -24,6 +24,14 @@ export const metadata: Metadata = {
     siteName: COMPANY.name,
     locale: 'en_ZA',
     type: 'website',
+    images: [
+      {
+        url: COMPANY.logo,
+        width: 2239,
+        height: 2064,
+        alt: `${COMPANY.name} logo`,
+      },
+    ],
   },
 };
 

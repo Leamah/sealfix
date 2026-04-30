@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { COMPANY } from '@/lib/content/company';
 import { MobileNav } from './MobileNav';
 
@@ -14,8 +15,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-charcoal-700 bg-charcoal-900/95 backdrop-blur supports-[backdrop-filter]:bg-charcoal-900/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold uppercase tracking-wider text-sand-100">
-          {COMPANY.name}
+        <Link href="/" aria-label={COMPANY.name} className="flex items-center">
+          <Image
+            src={COMPANY.logo}
+            alt={`${COMPANY.name} logo`}
+            width={2239}
+            height={2064}
+            priority
+            className="h-10 w-auto sm:h-12"
+          />
+          <span className="sr-only">{COMPANY.name}</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
