@@ -16,14 +16,16 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-charcoal-700 bg-charcoal-900/95 backdrop-blur supports-[backdrop-filter]:bg-charcoal-900/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" aria-label={COMPANY.name} className="flex items-center">
-          <Image
-            src={COMPANY.logo}
-            alt={`${COMPANY.name} logo`}
-            width={1536}
-            height={1024}
-            priority
-            className="h-10 w-auto sm:h-12"
-          />
+          <span className="inline-flex items-center rounded-lg bg-sand-100 px-2.5 py-1 shadow-sm ring-1 ring-sand-300/40">
+            <Image
+              src={COMPANY.logo}
+              alt={`${COMPANY.name} logo`}
+              width={1536}
+              height={1024}
+              priority
+              className="h-8 w-auto sm:h-10"
+            />
+          </span>
           <span className="sr-only">{COMPANY.name}</span>
         </Link>
 

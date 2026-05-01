@@ -34,13 +34,15 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company info */}
           <div>
-            <Image
-              src={COMPANY.logo}
-              alt={`${COMPANY.name} logo`}
-              width={1536}
-              height={1024}
-              className="h-14 w-auto"
-            />
+            <span className="inline-flex items-center rounded-lg bg-sand-100 px-3 py-2 shadow-sm ring-1 ring-sand-300/40">
+              <Image
+                src={COMPANY.logo}
+                alt={`${COMPANY.name} logo`}
+                width={1536}
+                height={1024}
+                className="h-12 w-auto"
+              />
+            </span>
             <p className="mt-3 text-sm leading-relaxed">{COMPANY.description}</p>
             <div className="mt-4 space-y-1 text-sm">
               <a href={`tel:${COMPANY.phone}`} className="block hover:text-ember-400 transition-colors">
