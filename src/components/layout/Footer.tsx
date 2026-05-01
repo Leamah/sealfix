@@ -37,8 +37,8 @@ export function Footer() {
             <Image
               src={COMPANY.logo}
               alt={`${COMPANY.name} logo`}
-              width={2239}
-              height={2064}
+              width={1536}
+              height={1024}
               className="h-14 w-auto"
             />
             <p className="mt-3 text-sm leading-relaxed">{COMPANY.description}</p>
