@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { leadFormSchema } from '@/lib/pricing/validators';
 import { appendLeadToSheet } from '@/lib/sheets';
+import { sendLeadNotification } from '@/lib/brevo';
 import { randomUUID } from 'crypto';
 
 export async function POST(request: NextRequest) {
@@ -42,6 +43,14 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     // Log but don't fail the request — lead is already captured in console
     console.error('[LEAD] Google Sheets write failed:', err);
+  }
+
+  // Send email notification via Brevo
+  try {
+    await sendLeadNotification(lead);
+  } catch (err) {
+    // Log but don't fail the request
+    console.error('[LEAD] Brevo email failed:', err);
   }
 
   return NextResponse.json({ success: true, id: lead.id });

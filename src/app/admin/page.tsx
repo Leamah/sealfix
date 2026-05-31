@@ -4,6 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { ServiceMode } from '@/lib/pricing/types';
 import type { EffectiveRates, PrepLevels, TierMultipliers, TierThresholds } from '@/lib/pricing/rate-store';
+import { QuoteGenerator } from '@/components/admin/QuoteGenerator';
 
 const Calculator = dynamic(() => import('@/components/calculator/Calculator').then((m) => m.Calculator), {
   ssr: false,
@@ -32,7 +33,7 @@ const MODE_UNITS: Record<ServiceMode, string> = {
 const PREP_LEVELS: (keyof PrepLevels)[] = ['light', 'medium', 'heavy', 'demolition'];
 const TIER_KEYS: (keyof TierMultipliers)[] = ['small', 'medium', 'large', 'major'];
 
-type Section = 'base' | 'prep' | 'overhead' | 'tiers' | 'thresholds' | 'calculator';
+type Section = 'base' | 'prep' | 'overhead' | 'tiers' | 'thresholds' | 'calculator' | 'quote';
 
 const inputClass =
   'rounded border border-charcoal-600 bg-charcoal-700 px-2 py-1.5 text-sm text-sand-100 focus:border-ember-500 focus:outline-none focus:ring-1 focus:ring-ember-500 w-24';
@@ -134,6 +135,7 @@ export default function AdminPage() {
     { id: 'tiers', label: 'Job Size Multipliers' },
     { id: 'thresholds', label: 'Job Size Thresholds' },
     { id: 'calculator', label: 'Live Tester' },
+    { id: 'quote', label: 'Generate Quote' },
   ];
 
   if (!authed) {
@@ -141,7 +143,6 @@ export default function AdminPage() {
       <div className="min-h-screen bg-charcoal-900 flex items-center justify-center px-4">
         <div className="w-full max-w-sm space-y-4 rounded border border-charcoal-700 bg-charcoal-800 p-8">
           <h1 className="font-display text-2xl font-bold uppercase text-sand-100">Admin Login</h1>
-          <p className="text-xs text-sand-400">Set ADMIN_PASSWORD in Vercel environment variables to enable access.</p>
           <input
             type="password"
             placeholder="Admin password"
@@ -355,6 +356,19 @@ export default function AdminPage() {
                 </div>
               </div>
             ))}
+          </section>
+        )}
+
+        {/* GENERATE QUOTE */}
+        {activeSection === 'quote' && (
+          <section>
+            <h2 className="font-display text-lg font-bold uppercase text-sand-100 mb-1">Generate Quote</h2>
+            <p className="text-xs text-sand-400 mb-6">
+              Fill in the client details and job parameters to produce a branded PDF quotation.
+              Click <span className="text-sand-200 font-semibold">Print / Export PDF</span> on the
+              preview to save as PDF.
+            </p>
+            <QuoteGenerator />
           </section>
         )}
 
