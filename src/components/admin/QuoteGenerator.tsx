@@ -374,16 +374,42 @@ export function QuoteGenerator() {
   const vat = meta.vatEnabled ? subtotal * 0.15 : 0;
   const total = subtotal + vat;
 
+  function printQuote() {
+    const quoteEl = document.getElementById('quote-document');
+    if (!quoteEl || !finalQuote) return;
+
+    const origin = window.location.origin;
+    // Make relative logo paths absolute so they load in the new window
+    const html = quoteEl.innerHTML.replace(/src="\/images\//g, `src="${origin}/images/`);
+
+    const win = window.open('', '_blank');
+    if (!win) return;
+
+    win.document.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>${finalQuote.meta.quoteNo}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background: #fff; }
+    @page { size: A4 portrait; margin: 0; }
+  </style>
+</head>
+<body>${html}</body>
+</html>`);
+    win.document.close();
+
+    // Give images time to load before triggering print
+    setTimeout(() => {
+      win.focus();
+      win.print();
+      win.close();
+    }, 800);
+  }
+
   return (
     <>
-      <style>{`
-        @media print {
-          body * { visibility: hidden !important; }
-          #quote-document, #quote-document * { visibility: visible !important; }
-          #quote-document { position: fixed !important; inset: 0 !important; width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; }
-          @page { size: A4 portrait; margin: 0; }
-        }
-      `}</style>
 
       {/* ── Step indicator ── */}
       <div className="flex items-center gap-3 mb-8">
@@ -620,7 +646,7 @@ export function QuoteGenerator() {
                 </p>
               </div>
             </div>
-            <button onClick={() => window.print()} className="flex items-center gap-2 rounded bg-moss-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-moss-500 transition-colors">
+            <button onClick={printQuote} className="flex items-center gap-2 rounded bg-moss-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-moss-500 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                 <path d="M6 9V2h12v7" /><rect x="6" y="14" width="12" height="8" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
               </svg>
