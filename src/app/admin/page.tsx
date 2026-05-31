@@ -197,7 +197,7 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 pt-8 space-y-8">
+      <div className={`mx-auto px-4 pt-8 space-y-8 ${activeSection === 'quote' ? 'max-w-7xl' : 'max-w-4xl'}`}>
 
         {/* BASE RATES */}
         {activeSection === 'base' && (
