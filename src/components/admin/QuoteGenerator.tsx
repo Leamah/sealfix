@@ -150,7 +150,7 @@ function QuoteDocument({ q }: { q: FinalQuote }) {
   return (
     <div id="quote-document">
       {/* ── Page 1: Quote ── */}
-      <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '11pt', color: '#1a1a1a', background: '#fff', width: '210mm', minHeight: '297mm', margin: '0 auto', padding: '14mm 14mm 12mm', boxSizing: 'border-box', lineHeight: 1.45 }}>
+      <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '11pt', color: '#1a1a1a', background: '#fff', width: '210mm', margin: '0 auto', padding: '14mm 14mm 12mm', boxSizing: 'border-box', lineHeight: 1.45, breakAfter: 'page' }}>
 
         {/* Header */}
         <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 18 }}>
@@ -213,7 +213,7 @@ function QuoteDocument({ q }: { q: FinalQuote }) {
           </thead>
           <tbody>
             {lines.map((line, i) => (
-              <tr key={line.id} style={{ borderBottom: '1px solid #eee', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+              <tr key={line.id} style={{ borderBottom: '1px solid #eee', background: i % 2 === 0 ? '#fff' : '#fafafa', breakInside: 'avoid' }}>
                 <td style={cell}>{line.description}</td>
                 <td style={{ ...cell, textAlign: 'right' }}>{line.qty.toLocaleString('en-ZA')}</td>
                 <td style={{ ...cell, paddingLeft: 8, color: '#666', fontSize: '9pt' }}>{line.unit}</td>
@@ -222,7 +222,7 @@ function QuoteDocument({ q }: { q: FinalQuote }) {
               </tr>
             ))}
           </tbody>
-          <tfoot>
+          <tfoot style={{ breakBefore: 'avoid' }}>
             <tr style={{ borderTop: '1px solid #ccc' }}>
               <td colSpan={4} style={{ paddingTop: 7, textAlign: 'right', color: '#555' }}>Subtotal (excl. VAT)</td>
               <td style={{ paddingTop: 7, textAlign: 'right' }}>{fmt(subtotal)}</td>
@@ -269,7 +269,28 @@ function QuoteDocument({ q }: { q: FinalQuote }) {
         </div>
       </div>
 
-      {/* ── Page 2: T&Cs ── */}
+      {/* ── Page 2: Appendix (image) — only if attached, comes before T&Cs ── */}
+      {imageDataUrl && (
+        <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', background: '#fff', width: '210mm', margin: '0 auto', padding: '14mm 14mm 12mm', boxSizing: 'border-box', breakBefore: 'page', breakAfter: 'page' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+            <div>
+              <div style={{ fontSize: '14pt', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>Appendix A</div>
+              <div style={{ fontSize: '9pt', color: '#777', marginTop: 2 }}>Site / Project Reference — {meta.quoteNo}</div>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/logo.png" alt="SealFix SA" style={{ height: 36, objectFit: 'contain' }} />
+          </div>
+          <div style={{ borderTop: '2px solid #e8a020', marginBottom: 20 }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imageDataUrl} alt="Site reference" style={{ display: 'block', width: '100%', maxHeight: '220mm', objectFit: 'contain', borderRadius: 4, border: '1px solid #ddd' }} />
+          {imageCaption && <div style={{ marginTop: 10, fontSize: '9pt', color: '#555', textAlign: 'center', fontStyle: 'italic' }}>{imageCaption}</div>}
+          <div style={{ borderTop: '1px solid #ddd', paddingTop: 8, marginTop: 20, fontSize: '7.5pt', color: '#999', textAlign: 'center' }}>
+            {COMPANY.legalName} &nbsp;·&nbsp; {COMPANY.phone} &nbsp;·&nbsp; {COMPANY.email}
+          </div>
+        </div>
+      )}
+
+      {/* ── Last page: T&Cs — always last ── */}
       <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '9.5pt', color: '#1a1a1a', background: '#fff', width: '210mm', margin: '0 auto', padding: '14mm 14mm 12mm', boxSizing: 'border-box', lineHeight: 1.5, breakBefore: 'page' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
           <div>
@@ -292,27 +313,6 @@ function QuoteDocument({ q }: { q: FinalQuote }) {
           {COMPANY.legalName} &nbsp;·&nbsp; {COMPANY.address.streetAddress}, {COMPANY.address.addressLocality} {COMPANY.address.postalCode} &nbsp;·&nbsp; {COMPANY.phone}
         </div>
       </div>
-
-      {/* ── Page 3: Appendix ── */}
-      {imageDataUrl && (
-        <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', background: '#fff', width: '210mm', minHeight: '297mm', margin: '0 auto', padding: '14mm 14mm 12mm', boxSizing: 'border-box', breakBefore: 'page' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-            <div>
-              <div style={{ fontSize: '14pt', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>Appendix A</div>
-              <div style={{ fontSize: '9pt', color: '#777', marginTop: 2 }}>Site / Project Reference — {meta.quoteNo}</div>
-            </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/logo.png" alt="SealFix SA" style={{ height: 36, objectFit: 'contain' }} />
-          </div>
-          <div style={{ borderTop: '2px solid #e8a020', marginBottom: 20 }} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imageDataUrl} alt="Site reference" style={{ display: 'block', width: '100%', maxHeight: '200mm', objectFit: 'contain', borderRadius: 4, border: '1px solid #ddd' }} />
-          {imageCaption && <div style={{ marginTop: 10, fontSize: '9pt', color: '#555', textAlign: 'center', fontStyle: 'italic' }}>{imageCaption}</div>}
-          <div style={{ borderTop: '1px solid #ddd', paddingTop: 8, marginTop: 20, fontSize: '7.5pt', color: '#999', textAlign: 'center' }}>
-            {COMPANY.legalName} &nbsp;·&nbsp; {COMPANY.phone} &nbsp;·&nbsp; {COMPANY.email}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
