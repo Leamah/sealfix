@@ -3,9 +3,9 @@ import type { ServiceMode, MeasurementUnit } from './types';
 export const BASE_RATES: Record<ServiceMode, number> = {
   sealing: 45,
   'line-marking': 22,
-  pothole: 350,
+  pothole: 600,
   'signage-physical': 2800,
-  'signage-painted': 650,
+  'signage-painted': 270,
 };
 
 export const JOB_SIZE_MULTIPLIERS = {
