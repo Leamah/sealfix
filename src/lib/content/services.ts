@@ -1,9 +1,25 @@
 import type { ServicePage } from '@/types/content';
 
+/** Used on the Request a Site Assessment page and on city pages — the full scope SealFix can quote on. */
+export const ASSESSMENT_SERVICE_LIST = [
+  'Civil engineering works',
+  'Construction and site works',
+  'Roadworks and asphalt surfacing',
+  'Parking area construction and rehabilitation',
+  'Industrial yard surfacing',
+  'Pothole and pavement repair',
+  'Asphalt sealing and surface protection',
+  'Line marking and road markings',
+  'Road sign supply and erection',
+  'Painted road symbols',
+  'Kerbing, speed humps and traffic calming',
+  'Drainage support and related external works',
+];
+
 export const SERVICES: ServicePage[] = [
   {
     slug: 'sealing',
-    title: 'Asphalt & Pavement Sealing',
+    title: 'Asphalt Sealing and Surface Protection',
     shortTitle: 'Sealing',
     description:
       'Professional sealing for driveways, parking lots, warehouse yards, and industrial surfaces. Extends asphalt life by up to 5 years.',
@@ -49,7 +65,7 @@ export const SERVICES: ServicePage[] = [
   },
   {
     slug: 'pothole-repair',
-    title: 'Pothole & Pavement Repair',
+    title: 'Pothole and Pavement Repair',
     shortTitle: 'Pothole Repair',
     description:
       'Fast, durable pothole patching for residential driveways, commercial parking areas, and industrial yards. Cold-mix and hot-mix options.',
@@ -96,7 +112,7 @@ export const SERVICES: ServicePage[] = [
   },
   {
     slug: 'line-marking',
-    title: 'Parking & Road Line Marking',
+    title: 'Line Marking and Road Markings',
     shortTitle: 'Line Marking',
     description:
       'Crisp, durable line marking for parking bays, road markings, safety zones, and sports courts. Thermoplastic and road paint options.',
@@ -105,7 +121,7 @@ export const SERVICES: ServicePage[] = [
     category: 'surface',
     useCases: [
       'Parking bay marking',
-      'Disabled bay marking (SANS compliant)',
+      'Disabled bay marking',
       'Warehouse floor markings',
       'Safety walkways',
       'Sports court markings',
@@ -130,9 +146,9 @@ export const SERVICES: ServicePage[] = [
           'Road paint typically lasts 1 to 2 years under heavy traffic. Thermoplastic lasts 5 to 7 years. Both are affected by vehicle turning movements and UV exposure.',
       },
       {
-        question: 'Do you mark disabled bays to SANS standards?',
+        question: 'Are disabled bays marked to the correct standard?',
         answer:
-          'Yes. All disabled bay markings comply with SANS 10400-S and include the correct dimensions, symbols, and access aisle widths.',
+          'Yes. Disabled bay markings are designed and installed according to the applicable project requirements, including the correct dimensions, symbols, and access aisle widths.',
       },
       {
         question: 'Can you remark over existing faded markings?',
@@ -143,7 +159,7 @@ export const SERVICES: ServicePage[] = [
   },
   {
     slug: 'signage-physical',
-    title: 'Physical Sign Supply & Erection',
+    title: 'Road Sign Supply and Erection',
     shortTitle: 'Sign Erection',
     description:
       'Supply and erection of road signs, parking signs, speed limit signs, and directional signs for residential estates, commercial sites, and industrial yards.',
@@ -174,7 +190,7 @@ export const SERVICES: ServicePage[] = [
       {
         question: 'Do your signs comply with South African road sign standards?',
         answer:
-          'Yes. All road signs comply with SANS 1519 and the South African Road Traffic Signs Manual (SARTSM). Parking and estate signs follow the relevant municipal by-laws.',
+          'All road signs are designed and installed according to the applicable project requirements. Parking and estate signs follow the relevant municipal by-laws.',
       },
       {
         question: 'How long does installation take?',
@@ -190,7 +206,7 @@ export const SERVICES: ServicePage[] = [
   },
   {
     slug: 'signage-painted',
-    title: 'Painted Road Symbols & Signage',
+    title: 'Painted Road Symbols and Site Markings',
     shortTitle: 'Painted Signage',
     description:
       'Professional painting of disabled parking symbols, arrows, speed numbers, STOP lettering, and other road symbols on asphalt and concrete surfaces.',
@@ -198,7 +214,7 @@ export const SERVICES: ServicePage[] = [
     calculatorMode: 'signage-painted',
     category: 'surface',
     useCases: [
-      'Disabled parking bay symbols (SANS compliant)',
+      'Disabled parking bay symbols',
       'STOP and SLOW lettering',
       'Speed limit numbers on road surface',
       'Directional arrows',
@@ -224,9 +240,9 @@ export const SERVICES: ServicePage[] = [
           'Road paint symbols last 1 to 2 years under normal traffic. Thermoplastic symbols last 4 to 7 years and are more durable. We recommend thermoplastic for high-traffic areas.',
       },
       {
-        question: 'Do disabled parking symbols comply with SANS standards?',
+        question: 'Are disabled parking symbols painted to the correct standard?',
         answer:
-          'Yes. We paint disabled bay symbols to SANS 10400-S dimensions and specifications. The correct wheelchair symbol, bay dimensions, and colour are applied.',
+          'Disabled bay symbols are painted according to the applicable project requirements, with the correct wheelchair symbol, bay dimensions, and colour applied.',
       },
       {
         question: 'Can you repaint over existing faded symbols?',

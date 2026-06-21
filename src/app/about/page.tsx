@@ -7,9 +7,9 @@ import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema';
 import { COMPANY } from '@/lib/content/company';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'About SealFix SA | South African Sealing & Surfacing Specialist',
+  title: 'About SealFix SA | Civil Engineering, Construction and Surface Infrastructure Contractor',
   description:
-    'Over 8 years of specialist sealing, surfacing, and line marking across South Africa. Serving residential, commercial, industrial, and municipal clients across 8 provinces.',
+    'SealFix SA is a South African civil engineering, construction, and surface infrastructure contractor with experience in roadworks, surfacing, sealing, pothole repair, line marking, and signage.',
   path: '/about',
 });
 
@@ -25,44 +25,64 @@ export default function AboutPage() {
           </h1>
           <div className="mt-6 space-y-4 text-sand-300 leading-relaxed">
             <p>
-              {COMPANY.name} is a South African specialist contractor for asphalt sealing, pothole repair, line marking, and signage.
-              Founded in {COMPANY.foundingYear}, we have built our reputation on delivering reliable, high-quality
-              pavement works for residential, commercial, industrial, and municipal clients across 8 provinces.
+              {COMPANY.name} is a South African civil engineering, construction, and surface infrastructure
+              contractor serving commercial, industrial, residential estate, and municipal clients.
             </p>
             <p>
-              Our team includes experienced site managers, qualified plant operators, and dedicated crews who understand
-              the demands of working in live commercial environments. We manage our own fleet of plant and equipment,
-              which means we control scheduling, quality, and cost, and can respond rapidly to urgent requirements.
-            </p>
-            <p>
-              We believe pricing should be transparent. That is why we built South Africa&apos;s first real-time
-              sealing and surfacing cost calculator so clients can get an indicative price before picking up the phone.
-              No obligation, no call required.
+              The company started in {COMPANY.foundingYear} with specialist pavement works, including asphalt
+              sealing, pothole repair, line marking, and signage. That practical surface infrastructure
+              experience remains part of the business. SealFix has expanded its scope to support broader civil
+              engineering and construction related works, including roadworks, parking area rehabilitation,
+              site infrastructure support, kerbing, traffic calming, drainage support, concrete works, and
+              external works.
             </p>
           </div>
 
           <div className="mt-10">
-            <h2 className="font-display text-2xl font-bold uppercase text-sand-100">Why clients choose us</h2>
-            <ul className="mt-4 space-y-3">
-              {[
-                'Fixed-price written quotes, no surprises',
-                'Own fleet of compactors, pavers, and line marking machines',
-                'After-hours and weekend scheduling available',
-                'Workmanship guarantee on every job',
-                'SANS-compliant disabled bay markings',
-                'Coal-tar-free sealers (environmentally responsible)',
-              ].map((point) => (
-                <li key={point} className="flex items-start gap-3 text-sand-300">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-ember-400" aria-hidden="true" />
-                  {point}
-                </li>
-              ))}
-            </ul>
+            <h2 className="font-display text-2xl font-bold uppercase text-sand-100">Our Practical Focus</h2>
+            <p className="mt-4 text-sand-300 leading-relaxed">
+              SealFix is built around practical site execution. We assess the surface, confirm the scope, plan
+              the work, prepare the area, manage crews and equipment, and hand over a completed result that is
+              functional, safe, and durable.
+            </p>
+            <p className="mt-3 text-sand-300 leading-relaxed">
+              The company is suitable for clients that need work done on active sites where access, safety,
+              traffic flow, and disruption need to be managed carefully.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="font-display text-2xl font-bold uppercase text-sand-100">Our Service Scope</h2>
+            <p className="mt-4 text-sand-300 leading-relaxed">
+              SealFix works across civil engineering, construction support, roadworks, and surface
+              infrastructure. Services include roadworks, asphalt surfacing, parking area construction,
+              pavement rehabilitation, pothole repair, sealing, line marking, road signage, painted road
+              symbols, kerbing, speed humps, traffic calming, drainage support, and related external works.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="font-display text-2xl font-bold uppercase text-sand-100">Our Clients</h2>
+            <p className="mt-4 text-sand-300 leading-relaxed">
+              We work with property owners, facilities managers, body corporates, estate managers, developers,
+              industrial operators, schools, hospitals, shopping centres, office parks, and public sector
+              clients.
+            </p>
+            <p className="mt-3 text-sand-300 leading-relaxed">
+              The same client may need a parking area resurfaced, potholes repaired, road markings restored,
+              signs installed, and traffic movement improved. SealFix brings those requirements into one
+              practical project delivery process.
+            </p>
           </div>
         </div>
       </div>
       <TrustBar />
-      <CtaBanner />
+      <CtaBanner
+        title="Speak to SealFix about your next project"
+        subtitle="Civil works, roadworks, surfacing, repair, line marking, or signage. Request a site assessment and we will confirm the best next step."
+        primaryLabel="Request a Site Assessment"
+        primaryHref="/request-site-assessment"
+      />
     </>
   );
 }

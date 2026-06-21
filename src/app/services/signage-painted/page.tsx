@@ -14,9 +14,9 @@ import { ServiceSchema } from '@/components/seo/ServiceSchema';
 const service = getServiceBySlug('signage-painted')!;
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Painted Road Symbols & Signage South Africa | Instant Cost Estimate',
+  title: 'Painted Road Symbols and Site Markings South Africa | SealFix SA',
   description:
-    'Professional painting of disabled parking symbols, arrows, STOP lettering, speed numbers, and other road symbols on asphalt and concrete. SANS 10400-S compliant.',
+    'SealFix SA paints road symbols, arrows, STOP lettering, speed markings, disabled bay symbols, pedestrian markings, and site safety markings across South Africa.',
   path: '/services/signage-painted',
 });
 
@@ -37,18 +37,17 @@ export default function SignagePaintedPage() {
             ]}
           />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100 sm:text-5xl">
-            Painted Road Symbols & Signage
+            Painted Road Symbols and Site Markings
           </h1>
           <p className="mt-4 max-w-2xl text-sand-300">
-            We paint disabled parking symbols, directional arrows, STOP and SLOW lettering, speed limit
-            numbers, and pedestrian crossing markings directly onto asphalt and concrete surfaces. All
-            disabled bay symbols comply with SANS 10400-S and are painted to the correct dimensions
-            and wheelchair symbol specification.
+            SealFix paints road symbols, directional arrows, STOP and SLOW lettering, speed numbers,
+            disabled bay symbols, pedestrian crossings, loading zone markings, and other site markings on
+            asphalt and concrete surfaces.
           </p>
           <p className="mt-3 max-w-2xl text-sand-300">
-            We offer both road paint and thermoplastic options. Thermoplastic symbols are heated and
-            fused to the surface for a durable, long-lasting finish ideal for high-traffic car parks
-            and roads. Road paint is a cost-effective option for lower-traffic areas and estates.
+            Painted symbols help drivers and pedestrians understand how to move through a site. They are
+            especially important in parking areas, estates, schools, hospitals, warehouses, retail centres,
+            and industrial yards.
           </p>
         </div>
       </div>

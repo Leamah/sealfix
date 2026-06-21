@@ -5,40 +5,52 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Project Gallery | SealFix SA',
+  title: 'SealFix SA Projects | Roadworks, Surfacing, Line Marking and Civil Works',
   description:
-    'Photos of completed sealing, surfacing, and line marking projects across South Africa. Commercial parking lots, warehouse yards, and industrial roads.',
+    'View SealFix SA project examples across roadworks, asphalt surfacing, pothole repair, sealing, line marking, signage, and surface infrastructure works.',
   path: '/gallery',
 });
 
-const PROJECTS = [
+interface ProjectCase {
+  projectType: string;
+  location: string;
+  siteType: string;
+  scope: string;
+  result: string;
+  image: string;
+  imageAlt: string;
+}
+
+const CASE_STUDIES: ProjectCase[] = [
   {
-    src: '/projects/project-collage.png',
-    alt: 'Completed sealing, surfacing and line marking projects',
-    caption: 'Recent completed works — surfacing, pothole repair and line marking',
-    aspect: 'aspect-[4/3]',
-    span: 'sm:col-span-2 lg:col-span-3',
+    projectType: 'Commercial Parking Area Rehabilitation',
+    location: 'Retail precinct',
+    siteType: 'Shopping centre',
+    scope:
+      'Surface preparation, pothole repair, asphalt resurfacing, bay layout review, line marking, and signage installation.',
+    result: 'Improved traffic flow, safer pedestrian movement, and a cleaner parking environment for tenants and customers.',
+    image: '/projects/pothole-repair-picknpay.jpg',
+    imageAlt: 'Pothole repair completed on main road outside a retail precinct',
   },
   {
-    src: '/projects/surfacing-driveway.jpg',
-    alt: 'Freshly surfaced commercial driveway and access road',
-    caption: 'Commercial access road — full surfacing',
-    aspect: 'aspect-video',
-    span: '',
+    projectType: 'Industrial Yard Surface Repair',
+    location: 'Warehouse / logistics facility',
+    siteType: 'Industrial yard',
+    scope:
+      'Damaged surface repair, pothole patching, access route preparation, sealing, and safety line marking.',
+    result: 'Better vehicle movement, reduced surface hazards, and improved operational safety.',
+    image: '/projects/surfacing-driveway.jpg',
+    imageAlt: 'Freshly surfaced commercial access road',
   },
   {
-    src: '/projects/pothole-repair-picknpay.jpg',
-    alt: 'Pothole repair completed on main road outside Pick n Pay',
-    caption: 'Pothole repair — retail precinct main road',
-    aspect: 'aspect-video',
-    span: '',
-  },
-  {
-    src: '/projects/line-marking-crew.jpg',
-    alt: 'SealFix crew painting pedestrian crossing line markings',
-    caption: 'Pedestrian crossing — line marking crew on site',
-    aspect: 'aspect-video',
-    span: '',
+    projectType: 'Estate Road and Traffic Marking Upgrade',
+    location: 'Residential estate',
+    siteType: 'Estate road',
+    scope:
+      'Road surface repairs, speed hump marking, road signs, pedestrian markings, and parking bay demarcation.',
+    result: 'Clearer road use, improved traffic control, and a more professional estate environment.',
+    image: '/projects/line-marking-crew.jpg',
+    imageAlt: 'SealFix crew painting pedestrian crossing line markings',
   },
 ];
 
@@ -47,33 +59,81 @@ export default function GalleryPage() {
     <>
       <div className="bg-charcoal-900 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ name: 'Gallery', path: '/gallery' }]} />
-          <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100">Project Gallery</h1>
-          <p className="mt-3 text-sand-300">
-            A selection of completed sealing, pothole repair, and line marking projects across South Africa.
+          <Breadcrumbs items={[{ name: 'Projects', path: '/gallery' }]} />
+          <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100">
+            SealFix Projects and Site Work Examples
+          </h1>
+          <p className="mt-3 max-w-2xl text-sand-300">
+            View examples of SealFix projects across roadworks, asphalt surfacing, pavement repair, sealing,
+            line marking, road signage, painted road symbols, and related surface infrastructure works.
+            These examples show the type of sites SealFix works on, the problems solved, and the practical
+            steps used to complete each project.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {PROJECTS.map((p) => (
-              <figure
-                key={p.src}
-                className={`${p.span} overflow-hidden rounded border border-charcoal-700 bg-charcoal-800`}
+
+          {/* Hero collage */}
+          <div className="mt-10 relative aspect-[16/7] w-full overflow-hidden rounded border border-charcoal-700">
+            <Image
+              src="/projects/project-collage.png"
+              alt="Completed sealing, surfacing, and line marking projects"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+          </div>
+
+          {/* Case studies */}
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {CASE_STUDIES.map((project) => (
+              <article
+                key={project.projectType}
+                className="overflow-hidden rounded border border-charcoal-700 bg-charcoal-800"
               >
-                <div className={`relative ${p.aspect} w-full`}>
+                <div className="relative aspect-video w-full">
                   <Image
-                    src={p.src}
-                    alt={p.alt}
+                    src={project.image}
+                    alt={project.imageAlt}
                     fill
                     className="object-cover"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 33vw, 100vw"
                   />
                 </div>
-                <figcaption className="px-3 py-2 text-xs text-sand-400">{p.caption}</figcaption>
-              </figure>
+                <div className="p-5">
+                  <h2 className="font-display text-lg font-bold uppercase text-sand-100">{project.projectType}</h2>
+                  <dl className="mt-3 space-y-2 text-sm">
+                    <div className="flex gap-2">
+                      <dt className="shrink-0 font-semibold text-sand-400">Location:</dt>
+                      <dd className="text-sand-300">{project.location}</dd>
+                    </div>
+                    <div className="flex gap-2">
+                      <dt className="shrink-0 font-semibold text-sand-400">Site type:</dt>
+                      <dd className="text-sand-300">{project.siteType}</dd>
+                    </div>
+                    <div className="flex gap-2">
+                      <dt className="shrink-0 font-semibold text-sand-400">Scope:</dt>
+                      <dd className="text-sand-300">{project.scope}</dd>
+                    </div>
+                    <div className="flex gap-2">
+                      <dt className="shrink-0 font-semibold text-sand-400">Result:</dt>
+                      <dd className="text-sand-300">{project.result}</dd>
+                    </div>
+                  </dl>
+                </div>
+              </article>
             ))}
           </div>
+
+          <p className="mt-10 text-sm text-sand-400">
+            Have a similar site? Send SealFix your project details and we will confirm the best next step.
+          </p>
         </div>
       </div>
-      <CtaBanner />
+      <CtaBanner
+        title="Have a similar site?"
+        subtitle="Send SealFix your project details and we will confirm the best next step."
+        primaryLabel="Request a Site Assessment"
+        primaryHref="/request-site-assessment"
+      />
     </>
   );
 }

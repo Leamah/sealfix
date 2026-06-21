@@ -14,9 +14,9 @@ import { ServiceSchema } from '@/components/seo/ServiceSchema';
 const service = getServiceBySlug('pothole-repair')!;
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Pothole Repair Contractors South Africa | Instant Cost Estimate',
+  title: 'Pothole and Pavement Repair Contractors South Africa | SealFix SA',
   description:
-    'Fast, durable pothole repair for residential driveways, commercial parking areas, and industrial yards. Cold-mix and hot-mix options. Instant online estimate.',
+    'SealFix SA provides pothole repair and pavement repair for commercial parking areas, roads, warehouse yards, estates, and industrial sites across South Africa.',
   path: '/services/pothole-repair',
 });
 
@@ -37,17 +37,17 @@ export default function PotholeRepairPage() {
             ]}
           />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100 sm:text-5xl">
-            Pothole & Pavement Repair
+            Pothole and Pavement Repair
           </h1>
           <p className="mt-4 max-w-2xl text-sand-300">
-            Potholes cause tyre damage, vehicle claims, and safety hazards. We patch and repair potholes in
-            residential driveways, commercial parking areas, warehouse yards, and industrial roads using
-            cold-mix for quick fixes and hot-mix asphalt for permanent, high-traffic repairs.
+            Potholes create safety risks, vehicle damage, water ponding, customer complaints, and operational
+            disruption. SealFix provides pothole and pavement repair for commercial parking areas, industrial
+            yards, estate roads, access routes, warehouse sites, schools, healthcare facilities, and selected
+            municipal environments.
           </p>
           <p className="mt-3 max-w-2xl text-sand-300">
-            Every repair starts with proper preparation: saw-cutting square edges, removing loose material,
-            and applying a tack coat before laying and compacting new asphalt. This ensures the patch bonds
-            correctly and does not fail prematurely. Emergency callouts are available 24 hours.
+            The aim is not only to fill a hole. The aim is to identify why the surface failed, prepare the
+            damaged area correctly, and apply a repair method suited to the traffic load and site condition.
           </p>
         </div>
       </div>

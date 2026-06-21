@@ -6,9 +6,9 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { AREAS } from '@/lib/content/areas';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Areas Served | South Africa Sealing & Surfacing Contractor',
+  title: 'Areas Served | SealFix SA Civil Engineering, Roadworks and Surfacing Contractors',
   description:
-    'SealFix SA operates across all major South African provinces: Gauteng, Western Cape, KwaZulu-Natal, Eastern Cape, and more. Find your nearest service area.',
+    'SealFix SA serves major South African regions with civil engineering works, construction support, roadworks, asphalt surfacing, pothole repair, sealing, line marking, and signage.',
   path: '/areas',
 });
 
@@ -21,11 +21,17 @@ export default function AreasPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ name: 'Areas Served', path: '/areas' }]} />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100 sm:text-5xl">
-            Service Areas
+            Areas Served Across South Africa
           </h1>
           <p className="mt-3 max-w-2xl text-sand-300">
-            We operate across all major South African provinces. Select your area below for local pricing,
-            a pre-filled calculator, and regional contact details.
+            SealFix SA serves commercial, industrial, residential estate, and municipal clients across major
+            South African regions. Services include civil engineering works, construction support, roadworks,
+            asphalt surfacing, parking area rehabilitation, pothole repair, sealing, line marking, road signage,
+            painted road symbols, and related external works.
+          </p>
+          <p className="mt-3 max-w-2xl text-sand-300">
+            Select your area below to learn more about the services available in your region and to request a
+            site assessment.
           </p>
 
           {PROVINCES.map((province) => (
@@ -51,7 +57,12 @@ export default function AreasPage() {
           ))}
         </div>
       </div>
-      <CtaBanner />
+      <CtaBanner
+        title="Choose your area"
+        subtitle="Or submit your project details and SealFix will confirm availability and the next step."
+        primaryLabel="Request a Site Assessment"
+        primaryHref="/request-site-assessment"
+      />
     </>
   );
 }

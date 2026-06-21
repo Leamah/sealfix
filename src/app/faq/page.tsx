@@ -6,13 +6,16 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { FAQS } from '@/lib/content/faqs';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'FAQ | Sealing, Pothole Repair & Line Marking South Africa',
+  title: 'SealFix FAQ | Civil Engineering, Roadworks, Surfacing, Sealing and Line Marking',
   description:
-    'Answers to frequently asked questions about sealing, pothole repair, and line marking costs, processes, materials, and scheduling in South Africa.',
+    'Answers to common questions about SealFix SA civil engineering works, construction support, roadworks, asphalt surfacing, pothole repair, sealing, line marking, and signage.',
   path: '/faq',
 });
 
 const CATEGORIES = [
+  { key: 'civil-construction', label: 'Civil Engineering & Construction' },
+  { key: 'roadworks-surfacing', label: 'Roadworks & Surfacing' },
+  { key: 'marking-signage', label: 'Line Marking & Signage' },
   { key: 'pricing', label: 'Pricing & Quotes' },
   { key: 'process', label: 'Process & Scheduling' },
   { key: 'sealing', label: 'Sealing' },
@@ -30,7 +33,9 @@ export default function FaqPage() {
             Frequently Asked Questions
           </h1>
           <p className="mt-3 text-sand-300">
-            Everything you need to know about sealing, pothole repair, and line marking in South Africa.
+            Find answers to common questions about SealFix civil engineering works, construction support,
+            roadworks, asphalt surfacing, parking area rehabilitation, pothole repair, sealing, line marking,
+            road signage, and painted road symbols.
           </p>
         </div>
       </div>
@@ -39,7 +44,12 @@ export default function FaqPage() {
         if (faqs.length === 0) return null;
         return <FaqAccordion key={cat.key} faqs={faqs} title={cat.label} />;
       })}
-      <CtaBanner />
+      <CtaBanner
+        title="Still have questions?"
+        subtitle="Send SealFix your site details and the team will confirm the next step."
+        primaryLabel="Request a Site Assessment"
+        primaryHref="/request-site-assessment"
+      />
     </>
   );
 }

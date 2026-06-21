@@ -14,9 +14,9 @@ import { ServiceSchema } from '@/components/seo/ServiceSchema';
 const service = getServiceBySlug('line-marking')!;
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Line Marking Contractors South Africa | Parking & Road Markings',
+  title: 'Line Marking and Road Marking Contractors South Africa | SealFix SA',
   description:
-    'Professional parking bay marking, road markings, warehouse floor lines, and sports court markings. Thermoplastic and road-paint options. SANS compliant. South Africa-wide.',
+    'SealFix SA provides parking bay line marking, road markings, warehouse markings, pedestrian crossings, disabled bays, and safety markings across South Africa.',
   path: '/services/line-marking',
 });
 
@@ -37,17 +37,16 @@ export default function LineMarkingPage() {
             ]}
           />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100 sm:text-5xl">
-            Parking & Road Line Marking
+            Line Marking and Road Markings
           </h1>
           <p className="mt-4 max-w-2xl text-sand-300">
-            Crisp, durable line marking for parking bays, road centre lines, safety walkways, warehouse floor zones,
-            and sports courts. We offer thermoplastic marking (heated, bonded to surface, 5–7 year lifespan) and
-            solvent road paint (1–2 year lifespan) depending on your traffic levels and budget.
+            SealFix provides line marking and road markings for parking areas, commercial sites, industrial
+            yards, estate roads, warehouse floors, schools, healthcare facilities, and selected road
+            environments.
           </p>
           <p className="mt-3 max-w-2xl text-sand-300">
-            All disabled bay markings comply with SANS 10400-S, including correct dimensions, access aisle widths,
-            and the international symbol of access. We can remove incorrect existing markings by blast-cleaning before
-            remarking.
+            Line marking remains a core SealFix service. It is also a natural final stage after surfacing,
+            sealing, pothole repair, parking area rehabilitation, or traffic flow upgrades.
           </p>
         </div>
       </div>

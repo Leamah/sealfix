@@ -14,9 +14,9 @@ import { ServiceSchema } from '@/components/seo/ServiceSchema';
 const service = getServiceBySlug('signage-physical')!;
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Road Sign Supply & Erection South Africa | Instant Cost Estimate',
+  title: 'Road Sign Supply and Erection South Africa | SealFix SA',
   description:
-    'Professional supply and erection of road signs, speed limit signs, parking signs, and directional signs for residential estates, commercial sites, and industrial yards.',
+    'SealFix SA supplies and erects road signs, parking signs, speed signs, directional signs, and site safety signage for commercial, industrial, and estate environments.',
   path: '/services/signage-physical',
 });
 
@@ -37,18 +37,16 @@ export default function SignagePhysicalPage() {
             ]}
           />
           <h1 className="mt-4 font-display text-4xl font-bold uppercase text-sand-100 sm:text-5xl">
-            Physical Sign Supply & Erection
+            Road Sign Supply and Erection
           </h1>
           <p className="mt-4 max-w-2xl text-sand-300">
-            We supply and erect road signs, speed limit signs, parking restriction signs, and directional
-            signage for residential estates, commercial properties, and industrial yards. Every sign
-            is SANS 1519 compliant and installed to specification using the correct post type and
-            foundation for the surface.
+            SealFix supplies and erects selected road signs, parking signs, speed signs, directional signs,
+            and site safety signage for commercial, industrial, estate, and road environments.
           </p>
           <p className="mt-3 max-w-2xl text-sand-300">
-            Our team handles everything from site survey and sign selection through to post installation,
-            sign mounting, and final inspection. We can install in both paved and unpaved surfaces and
-            work alongside line marking and sealing teams on combined projects.
+            Signage supports safe vehicle movement, pedestrian control, parking management, access control,
+            and traffic flow. It is often delivered together with line marking, painted road symbols, traffic
+            calming, sealing, or resurfacing works.
           </p>
         </div>
       </div>

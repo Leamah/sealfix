@@ -20,6 +20,10 @@ export interface AreaPage {
   regionKey: string;
   description: string;
   population: string;
+  /** Civil-engineering-framed intro naming nearby towns served. */
+  intro: string;
+  /** Comma-separated list of typical site types served in this area. */
+  sitesServed: string;
 }
 
 export interface IndustryPage {

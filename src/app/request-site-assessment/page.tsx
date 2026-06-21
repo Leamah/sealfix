@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
+import { ASSESSMENT_SERVICE_LIST } from '@/lib/content/services';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { RequestAssessmentSection } from '@/components/sections/RequestAssessmentSection';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
@@ -33,20 +34,7 @@ export default function RequestSiteAssessmentPage() {
           <div className="mt-10 max-w-2xl">
             <h2 className="font-display text-lg font-bold uppercase text-sand-100">What SealFix can quote on</h2>
             <ul className="mt-4 grid gap-2 text-sm text-sand-300 sm:grid-cols-2">
-              {[
-                'Civil engineering works',
-                'Construction and site works',
-                'Roadworks and asphalt surfacing',
-                'Parking area construction and rehabilitation',
-                'Industrial yard surfacing',
-                'Pothole and pavement repair',
-                'Asphalt sealing and surface protection',
-                'Line marking and road markings',
-                'Road sign supply and erection',
-                'Painted road symbols',
-                'Kerbing, speed humps and traffic calming',
-                'Drainage support and related external works',
-              ].map((item) => (
+              {ASSESSMENT_SERVICE_LIST.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ember-400" aria-hidden="true" />
                   {item}

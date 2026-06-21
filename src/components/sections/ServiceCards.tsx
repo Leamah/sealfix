@@ -18,7 +18,7 @@ const SERVICES = [
   {
     title: 'Line Marking',
     href: '/services/line-marking',
-    description: 'Durable parking bay marking, safety lines, and road markings. Thermoplastic and road-paint options. SANS compliant.',
+    description: 'Durable parking bay marking, safety lines, and road markings. Thermoplastic and road-paint options.',
     icon: '📐',
     cta: 'Marking prices',
   },
@@ -32,7 +32,7 @@ const SERVICES = [
   {
     title: 'Painted Signage',
     href: '/services/signage-painted',
-    description: 'Disabled bay symbols, arrows, STOP lettering, and speed numbers painted on asphalt or concrete. SANS 10400-S compliant.',
+    description: 'Disabled bay symbols, arrows, STOP lettering, and speed numbers painted on asphalt or concrete.',
     icon: '♿',
     cta: 'Symbol prices',
   },
