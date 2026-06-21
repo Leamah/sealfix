@@ -3,12 +3,14 @@ import Image from 'next/image';
 import { COMPANY } from '@/lib/content/company';
 
 const SERVICE_LINKS = [
-  { href: '/services/sealing', label: 'Sealing' },
-  { href: '/services/pothole-repair', label: 'Pothole Repair' },
+  { href: '/services/civil-engineering-works', label: 'Civil Engineering Works' },
+  { href: '/services/roadworks-asphalt-surfacing', label: 'Roadworks & Asphalt Surfacing' },
+  { href: '/services/parking-area-construction-rehabilitation', label: 'Parking Area Construction' },
+  { href: '/services/pothole-repair', label: 'Pothole & Pavement Repair' },
+  { href: '/services/sealing', label: 'Asphalt Sealing' },
   { href: '/services/line-marking', label: 'Line Marking' },
-  { href: '/services/signage-physical', label: 'Sign Erection' },
-  { href: '/services/signage-painted', label: 'Painted Signage' },
-  { href: '/pricing', label: 'Pricing Calculator' },
+  { href: '/services/signage-physical', label: 'Road Signage' },
+  { href: '/services', label: 'View All Services →' },
 ];
 
 const COMPANY_LINKS = [
@@ -17,6 +19,7 @@ const COMPANY_LINKS = [
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
   { href: '/blog', label: 'Resources' },
+  { href: '/pricing', label: 'Pricing Calculator' },
 ];
 
 const AREA_LINKS = [
@@ -52,6 +55,12 @@ export function Footer() {
                 {COMPANY.email}
               </a>
             </div>
+            <Link
+              href="/request-site-assessment"
+              className="mt-4 inline-block rounded bg-ember-500 px-4 py-2 text-sm font-semibold text-charcoal-900 transition-colors hover:bg-ember-400"
+            >
+              Request a Site Assessment
+            </Link>
           </div>
 
           {/* Services */}

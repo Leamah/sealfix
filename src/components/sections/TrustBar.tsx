@@ -1,8 +1,8 @@
 const STATS = [
   { value: '8+', label: 'Years in business' },
-  { value: '500+', label: 'Projects completed' },
-  { value: '8', label: 'Provinces serviced' },
-  { value: '4.9★', label: 'Average rating' },
+  { value: 'Civil + Surface', label: 'One contractor, full scope' },
+  { value: 'National', label: 'Coverage across South Africa' },
+  { value: 'Site-Verified', label: 'Quotes confirmed by inspection' },
 ];
 
 export function TrustBar() {
@@ -12,7 +12,7 @@ export function TrustBar() {
         <dl className="grid grid-cols-2 gap-6 sm:grid-cols-4">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
-              <dt className="font-display text-3xl font-bold text-ember-400">{stat.value}</dt>
+              <dt className="font-display text-xl font-bold text-ember-400 sm:text-2xl">{stat.value}</dt>
               <dd className="mt-1 text-xs uppercase tracking-wider text-sand-400">{stat.label}</dd>
             </div>
           ))}

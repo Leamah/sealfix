@@ -42,8 +42,8 @@ export function ServiceCards() {
   return (
     <section className="bg-charcoal-900 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl font-bold uppercase text-sand-100">Our Services</h2>
-        <p className="mt-2 text-sand-400">South African residential and commercial specialist</p>
+        <h2 className="font-display text-3xl font-bold uppercase text-sand-100">Surface Infrastructure &amp; Maintenance</h2>
+        <p className="mt-2 text-sand-400">Specialist sealing, repair, marking, and signage services</p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
             <div

@@ -4,11 +4,15 @@ import { COMPANY } from '@/lib/content/company';
 interface CtaBannerProps {
   title?: string;
   subtitle?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
 }
 
 export function CtaBanner({
   title = 'Ready to get a price?',
   subtitle = 'Use our online calculator for an instant estimate, or call us to discuss your project.',
+  primaryLabel = 'Online Estimate',
+  primaryHref = '/pricing',
 }: CtaBannerProps) {
   return (
     <section className="bg-ember-600 py-14">
@@ -17,10 +21,10 @@ export function CtaBanner({
         <p className="mt-3 text-charcoal-800">{subtitle}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
-            href="/pricing"
+            href={primaryHref}
             className="rounded bg-charcoal-900 px-6 py-3 font-semibold text-sand-100 transition-colors hover:bg-charcoal-800"
           >
-            Online Estimate
+            {primaryLabel}
           </Link>
           <a
             href={`tel:${COMPANY.phone}`}

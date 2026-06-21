@@ -5,8 +5,9 @@ import { MobileNav } from './MobileNav';
 
 const NAV_LINKS = [
   { href: '/services', label: 'Services' },
-  { href: '/pricing', label: 'Get a Quote' },
   { href: '/areas', label: 'Areas Served' },
+  { href: '/gallery', label: 'Projects' },
+  { href: '/pricing', label: 'Get a Quote' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -49,10 +50,10 @@ export function Header() {
             {COMPANY.phone}
           </a>
           <Link
-            href="/pricing"
+            href="/request-site-assessment"
             className="rounded bg-ember-500 px-4 py-2 text-sm font-semibold text-charcoal-900 transition-colors hover:bg-ember-400"
           >
-            Free Estimate
+            Request a Site Assessment
           </Link>
           <MobileNav links={NAV_LINKS} />
         </div>

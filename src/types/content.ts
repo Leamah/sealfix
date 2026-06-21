@@ -4,7 +4,10 @@ export interface ServicePage {
   shortTitle: string;
   description: string;
   heroImage: string;
-  calculatorMode: 'sealing' | 'line-marking' | 'pothole' | 'signage-physical' | 'signage-painted';
+  /** Omitted for civil engineering / construction services that have no instant-price calculator. */
+  calculatorMode?: 'sealing' | 'line-marking' | 'pothole' | 'signage-physical' | 'signage-painted';
+  /** Groups the service for the services overview page. */
+  category: 'civil' | 'surface';
   useCases: string[];
   pricingFactors: string[];
   faqs: Array<{ question: string; answer: string }>;
