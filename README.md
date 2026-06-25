@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SealFix SA
+
+Marketing site, instant pricing calculator, and lead-capture pipeline for SealFix SA — a South
+African civil engineering, construction, and surface infrastructure contractor (roadworks,
+asphalt surfacing, pothole repair, sealing, line marking, road signage, and painted road
+symbols).
+
+Built with Next.js 16 (App Router), TypeScript, and Tailwind v4.
+
+> **Note for AI agents:** see [AGENTS.md](./AGENTS.md) — this Next.js version has breaking
+> changes from what most training data assumes. Read `node_modules/next/dist/docs/` before
+> writing code against it.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.local.example .env.local   # then fill in the values, see below
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/` — pages (App Router). Service pages live under `src/app/services/[slug]`,
+  city pages under `src/app/areas/[slug]`.
+- `src/lib/content/` — all editable copy: `services.ts`, `areas.ts`, `faqs.ts`, `company.ts`
+  (single source of truth for name, phone, email, address, used in metadata + JSON-LD).
+- `src/lib/pricing/` — the calculator engine. `rates.ts` holds base rates; `rate-store.ts`
+  layers `RATE_OVERRIDE_*` env vars and `/admin` session edits on top of those defaults.
+- `src/app/admin/` — password-protected (`ADMIN_PASSWORD`) pricing editor and a standalone
+  quote generator (editable line items, branded PDF export with T&Cs).
+- `src/app/api/leads` and `src/app/api/site-assessment` — lead capture endpoints. Both write
+  a row to a Google Sheet via an Apps Script webhook and send a Brevo notification email.
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+See [.env.local.example](./.env.local.example) for the full list with setup instructions.
+Required for the site to build and run with no missing-feature warnings:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Used for |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical URLs, OG images, sitemap |
+| `ADMIN_PASSWORD` | Gates `/admin` |
+| `GOOGLE_SHEETS_WEBHOOK_URL` | Lead log (Apps Script `doPost`, no service account) |
+| `BREVO_API_KEY` | Email notifications on new leads / site-assessment requests |
+| `LEAD_NOTIFY_EMAIL` | Inbox that receives those notifications |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`RATE_OVERRIDE_*` vars are optional — they're the only way to make a base-rate change in
+`/admin` persist across a Vercel redeploy (the admin UI itself only edits the running
+serverless instance).
 
-## Deploy on Vercel
+## Deploying
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pushes to `main` deploy automatically via Vercel. Run `npm run build` locally first if you
+want to catch type errors before pushing — `tsc` runs as part of the build.
